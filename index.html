@@ -88,7 +88,6 @@
 
 
 <!-- Projects Section -->
-<!-- Projects Section -->
 <section class="projects-section" id="projects-section">
     <h2>Discover My Main Projects</h2>
     <p style="font-size: 1.1em; line-height: 1.6;">
@@ -183,25 +182,25 @@
   
     <div class="how-i-work-container">
       <div class="how-i-work-item">
-        <img src="images/tr.png" alt="Briefing">
+        <img src="images/tr2.png" alt="Briefing">
         <h3>1. BRIEFING:</h3>
         <p>I often collaborate with agencies using Trello to organize and plan social media posts, aligning each post with editorial pillars and campaign objectives.</p>
       </div>
   
       <div class="how-i-work-item">
-        <img src="images/cr.png" alt="Creation">
+        <img src="images/cr2.png" alt="Creation">
         <h3>2. CREATION:</h3>
         <p>I create prototypes to visualize ideas, using Adobe XD for landing pages and Photoshop for visuals. If needed, I coordinate with agencies to ensure visuals align with our brand guidelines.</p>
       </div>
   
       <div class="how-i-work-item">
-        <img src="images/repor.png" alt="Reporting">
+        <img src="images/repor2.png" alt="Reporting">
         <h3>3. REPORTINGS:</h3>
         <p>I develop dashboards in Looker Studio to analyze performance, identify what worked and what didn’t, and adjust our digital strategy accordingly.</p>
       </div>
   
       <div class="how-i-work-item">
-        <img src="images/optimi.png" alt="Optimization">
+        <img src="images/optimi2.png" alt="Optimization">
         <h3>4. OPTIMIZATION:</h3>
         <p>Using data insights, I continuously optimize content and campaigns to improve engagement, performance, and ROI, ensuring strategies evolve with audience needs.</p>
       </div>
@@ -238,7 +237,28 @@
     <p>© 2024 All Rights Reserved</p>
   </footer>
   
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      let lazyImages = [].slice.call(document.querySelectorAll("img.lazyload"));
+  
+      if ("IntersectionObserver" in window) {
+        let lazyImageObserver = new IntersectionObserver(function (entries, observer) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              let lazyImage = entry.target;
+              lazyImage.src = lazyImage.dataset.src;
+              lazyImage.classList.remove("lazyload");
+              lazyImageObserver.unobserve(lazyImage);
+            }
+          });
+        });
+  
+        lazyImages.forEach(function (lazyImage) {
+          lazyImageObserver.observe(lazyImage);
+        });
+      }
+    });
+  </script>
   
 </body>
 </html>
-
