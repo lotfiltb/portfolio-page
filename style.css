@@ -848,3 +848,11 @@ h3 {
   opacity: 0.8; /* Slightly transparent on hover */
 }
 
+.how-i-work-item img {
+  width: 240px;
+  height: 170px;
+  object-fit: cover; /* Ensures the image is cropped nicely */
+  border-radius: 8px; /* Keeps the same rounded corners */
+  opacity: 0.9;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
