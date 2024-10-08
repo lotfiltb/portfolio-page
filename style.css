@@ -24,6 +24,14 @@ body {
     z-index: 1000; /* Ensure it's above other content */
     border-bottom: 1px solid rgba(255, 255, 255, 0.5); /* Thin white divider */
 }
+.navbar {
+  background-color: black; /* Sets the background color to black */
+  padding-bottom: 20px; /* Adjust spacing between navbar and banner */
+}
+
+#banner {
+  margin-top: 20px; /* Adjust spacing as needed */
+}
 
 
 .logo {
