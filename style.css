@@ -12,26 +12,18 @@ body {
 /* Navigation Bar */
 /* Initial navbar styles */
 .navbar {
-    position: fixed; /* Keep the navbar fixed */
+    position: fixed; /* Keeps the navbar at the top */
     top: 0;
     left: 0;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 50px;
-    background-color: transparent; /* Initial transparent background */
-    transition: background-color 0.3s; /* Smooth transition for background color */
-    z-index: 3;
+    padding: 20px 50px; /* Inner padding for the navbar items */
+    background-color: black; /* Background color */
+    z-index: 1000; /* Ensure it's above other content */
     border-bottom: 1px solid rgba(255, 255, 255, 0.5); /* Thin white divider */
 }
-
-/* Navbar styles when scrolling */
-.navbar.scrolled {
-    background-color: black; /* Background color when scrolling */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.5); /* Optional: keep the divider */
-}
-
 
 
 .logo {
