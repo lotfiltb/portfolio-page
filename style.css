@@ -10,8 +10,9 @@ body {
 }
 
 /* Navigation Bar */
+/* Initial navbar styles */
 .navbar {
-    position: fixed; /* Change from absolute to fixed */
+    position: fixed; /* Keep the navbar fixed */
     top: 0;
     left: 0;
     width: 100%;
@@ -19,10 +20,18 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 20px 50px;
-    background-color: rgba(255, 255, 255, 0.9); /* Slightly opaque background for visibility */
+    background-color: transparent; /* Initial transparent background */
+    transition: background-color 0.3s; /* Smooth transition for background color */
     z-index: 3;
     border-bottom: 1px solid rgba(255, 255, 255, 0.5); /* Thin white divider */
 }
+
+/* Navbar styles when scrolling */
+.navbar.scrolled {
+    background-color: black; /* Background color when scrolling */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5); /* Optional: keep the divider */
+}
+
 
 
 .logo {
