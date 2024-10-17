@@ -10,29 +10,19 @@ body {
 }
 
 /* Navigation Bar */
-/* Initial navbar styles */
 .navbar {
-    position: fixed; /* Keeps the navbar at the top */
-    top: 0;
-    left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 50px; /* Inner padding for the navbar items */
-    background-color: black; /* Background color */
-    z-index: 1000; /* Ensure it's above other content */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.5); /* Thin white divider */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+  background-color: transparent;
+  z-index: 3;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5); /* Thin white divider */
 }
-.navbar {
-  background-color: black; /* Sets the background color to black */
-  padding-bottom: 20px; /* Adjust spacing between navbar and banner */
-}
-
-#banner {
-  margin-top: 20px; /* Adjust spacing as needed */
-}
-
 
 .logo {
   font-size: 24px;
@@ -858,11 +848,3 @@ h3 {
   opacity: 0.8; /* Slightly transparent on hover */
 }
 
-.how-i-work-item img {
-  width: 240px;
-  height: 170px;
-  object-fit: cover; /* Ensures the image is cropped nicely */
-  border-radius: 8px; /* Keeps the same rounded corners */
-  opacity: 0.9;
-  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-}
