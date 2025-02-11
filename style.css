@@ -1,3 +1,60 @@
+/* Ensure the page is responsive */
+@media (max-width: 768px) {
+    /* For small screens (mobile devices), make the navigation links stack vertically */
+    nav ul {
+        list-style-type: none;
+        padding: 0;
+        text-align: center;
+    }
+
+    nav ul li {
+        display: block;
+        margin: 5px 0;
+    }
+
+    nav ul li a {
+        padding: 10px 20px;
+        background-color: #333;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+    }
+
+    nav ul li a:hover {
+        background-color: #555;
+    }
+
+    /* Make the main content area stack vertically */
+    .main-content {
+        display: block;
+    }
+
+    .content {
+        width: 100%;
+        margin: 10px 0;
+        padding: 20px;
+        background-color: #f4f4f4;
+        border-radius: 5px;
+    }
+}
+
+/* For larger screens (tablets and above), use default layout */
+@media (min-width: 769px) {
+    .main-content {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .content {
+        flex: 1;
+        margin: 10px;
+        padding: 20px;
+        background-color: #f4f4f4;
+        border-radius: 5px;
+    }
+}
+
+
 /* General Reset */
 * {
   margin: 0;
