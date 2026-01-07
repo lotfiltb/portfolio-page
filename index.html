@@ -51,6 +51,35 @@
 			color: #ffffff;
 		}
 
+		.hamburger {
+			display: none;
+			flex-direction: column;
+			cursor: pointer;
+			gap: 6px;
+			background: none;
+			border: none;
+			padding: 0;
+		}
+
+		.hamburger span {
+			width: 25px;
+			height: 3px;
+			background-color: #ffffff;
+			transition: all 0.3s;
+		}
+
+		.hamburger.active span:nth-child(1) {
+			transform: rotate(45deg) translate(8px, 8px);
+		}
+
+		.hamburger.active span:nth-child(2) {
+			opacity: 0;
+		}
+
+		.hamburger.active span:nth-child(3) {
+			transform: rotate(-45deg) translate(7px, -7px);
+		}
+
 		nav ul {
 			list-style: none;
 			display: flex;
@@ -428,6 +457,49 @@
 
 		/* Responsive */
 		@media (max-width: 768px) {
+			.hamburger {
+				display: flex;
+			}
+
+			nav {
+				position: absolute;
+				top: 70px;
+				left: 0;
+				right: 0;
+				background-color: #000000;
+				max-height: 0;
+				overflow: hidden;
+				transition: max-height 0.3s ease;
+			}
+
+			nav.active {
+				max-height: 300px;
+			}
+
+			nav ul {
+				flex-direction: column;
+				gap: 0;
+				padding: 20px;
+			}
+
+			nav li {
+				padding: 12px 0;
+				border-bottom: 1px solid #333;
+			}
+
+			nav li:last-child {
+				border-bottom: none;
+			}
+
+			header .container {
+				flex-wrap: wrap;
+				position: relative;
+			}
+
+			.logo h1 {
+				font-size: 22px;
+			}
+
 			nav ul {
 				flex-direction: column;
 				gap: 15px;
@@ -445,12 +517,172 @@
 				grid-template-columns: 1fr;
 			}
 
+			.about h2 {
+				font-size: 28px;
+			}
+
+			.projects h2 {
+				font-size: 28px;
+			}
+
+			.landing-pages h2 {
+				font-size: 28px;
+			}
+
+			.social-media h2 {
+				font-size: 28px;
+			}
+
+			.how-I-work h2 {
+				font-size: 28px;
+			}
+
+			.contact h2 {
+				font-size: 28px;
+			}
+
+			.projects-grid {
+				grid-template-columns: 1fr;
+			}
+
+			.pages-grid {
+				grid-template-columns: 1fr;
+			}
+
+			.strategies-grid {
+				grid-template-columns: 1fr;
+			}
+
+			.workflow-grid {
+				grid-template-columns: 1fr;
+			}
+
 			.contact-buttons {
 				flex-direction: column;
 			}
 
 			.contact-buttons .btn {
 				width: 100%;
+			}
+
+			.about p {
+				font-size: 15px;
+			}
+
+			.projects-intro {
+				font-size: 15px;
+			}
+
+			.landing-pages-intro {
+				font-size: 15px;
+			}
+
+			.social-intro {
+				font-size: 15px;
+			}
+
+			.project-card p {
+				font-size: 14px;
+			}
+
+			.page-card p {
+				font-size: 14px;
+			}
+
+			.strategy-card p {
+				font-size: 14px;
+			}
+
+			.workflow-step p {
+				font-size: 13px;
+			}
+
+			.step-number {
+				font-size: 28px;
+			}
+
+			.contact-intro {
+				font-size: 15px;
+			}
+		}
+
+		@media (max-width: 480px) {
+			.container {
+				padding: 0 15px;
+			}
+
+			.logo h1 {
+				font-size: 18px;
+			}
+
+			.hero-content h2 {
+				font-size: 28px;
+			}
+
+			.about h2,
+			.projects h2,
+			.landing-pages h2,
+			.social-media h2,
+			.how-I-work h2,
+			.contact h2 {
+				font-size: 22px;
+			}
+
+			.hero {
+				padding: 60px 0;
+			}
+
+			.about {
+				padding: 50px 0;
+			}
+
+			.projects {
+				padding: 50px 0;
+			}
+
+			.landing-pages {
+				padding: 50px 0;
+			}
+
+			.social-media {
+				padding: 50px 0;
+			}
+
+			.how-I-work {
+				padding: 50px 0;
+			}
+
+			.contact {
+				padding: 50px 0;
+			}
+
+			footer {
+				padding: 30px 0;
+			}
+
+			.project-card {
+				padding: 20px;
+			}
+
+			.page-card {
+				padding: 20px;
+			}
+
+			.workflow-step {
+				padding: 20px;
+			}
+
+			.step-title {
+				font-size: 16px;
+			}
+
+			.btn {
+				padding: 10px 20px;
+				font-size: 13px;
+			}
+
+			nav a {
+				font-size: 16px;
 			}
 		}
 	</style>
@@ -462,7 +694,12 @@
 			<div class="logo">
 				<h1><span>Lotfi</span> TBER.</h1>
 			</div>
-			<nav>
+			<button class="hamburger" id="hamburger">
+				<span></span>
+				<span></span>
+				<span></span>
+			</button>
+			<nav id="nav">
 				<ul>
 					<li><a href="#about">About Me</a></li>
 					<li><a href="#projects">Projects</a></li>
@@ -495,7 +732,7 @@
 				<p>I'm constantly learning, and I believe I can bring positive value and fresh perspectives.</p>
 			</div>
 			<div>
-				<img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='500'%3E%3Crect fill='%23ddd' width='400' height='500'/%3E%3Ctext x='50%25' y='50%25' font-size='20' fill='%23999' text-anchor='middle' dominant-baseline='middle'%3EPhoto Portrait%3C/text%3E%3C/svg%3E" alt="Lotfi Portrait" style="max-width: 100%; height: auto;" />
+				<img src="https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/8yjztmdl/276/p01/krc/pdpvf.png" alt="Lotfi Portrait" />
 			</div>
 		</div>
 	</section>
@@ -510,17 +747,17 @@
 			<div class="projects-grid">
 				<div class="project-card">
 					<h3>Yves Rocher: Famille Bio Campaign</h3>
-					<img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='250'%3E%3Crect fill='%23ff9900' width='300' height='250'/%3E%3Ctext x='50%25' y='50%25' font-size='18' fill='white' text-anchor='middle' dominant-baseline='middle' font-weight='bold'%3EYves Rocher Project%3C/text%3E%3C/svg%3E" alt="Yves Rocher Project" />
+					<img src="https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/8yjztmdl/ced/knp/fej/pr1.png" alt="Yves Rocher Project" />
 					<p>I helped create awareness and engagement for Yves Rocher's Famille Bio range through teasing posts, engaging quizzes, influencer partnerships, and product highlights.</p>
 				</div>
 				<div class="project-card">
 					<h3>Bridgestone: Olympic Games Campaign</h3>
-					<img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='250'%3E%3Crect fill='%23ffb400' width='300' height='250'/%3E%3Ctext x='50%25' y='50%25' font-size='18' fill='white' text-anchor='middle' dominant-baseline='middle' font-weight='bold'%3EBridgestone Project%3C/text%3E%3C/svg%3E" alt="Bridgestone Project" />
+					<img src="https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/8yjztmdl/bf7/ioe/ny1/pr2.png" alt="Bridgestone Project" />
 					<p>For Bridgestone, I worked on a digital strategy for the Olympic Games of Paris 2024, using social media, landing pages, and newsletters to retain participants.</p>
 				</div>
 				<div class="project-card">
 					<h3>Kverneland: XHD Carbide Campaign</h3>
-					<img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='250'%3E%3Crect fill='%23333' width='300' height='250'/%3E%3Ctext x='50%25' y='50%25' font-size='18' fill='%23ff9900' text-anchor='middle' dominant-baseline='middle' font-weight='bold'%3EKverneland Project%3C/text%3E%3C/svg%3E" alt="Kverneland Project" />
+					<img src="https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/8yjztmdl/jr7/vfg/3g7/pr3.png" alt="Kverneland Project" />
 					<p>I supported Kverneland's digital 360° campaign by increasing product visibility through targeted ads on YouTube and Google, and ensuring a seamless user experience.</p>
 				</div>
 			</div>
@@ -537,19 +774,19 @@
 			<div class="pages-grid">
 				<div class="page-card">
 					<h3>Service Information Page</h3>
-					<img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='250'%3E%3Crect fill='%232d2d2d' width='300' height='250'/%3E%3Ctext x='50%25' y='50%25' font-size='16' fill='%23ff9900' text-anchor='middle' dominant-baseline='middle' font-weight='bold'%3EService Page Mockup%3C/text%3E%3C/svg%3E" alt="Service Page" />
+					<img src="https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/8yjztmdl/msk/7sg/44j/mockupmykv.png" alt="Service Page" />
 					<p>Developed a landing page to promote an online platform offering personalized solutions for fleet management, designed for farmers and contractors.</p>
 					<a href="https://ien.kverneland.com/parts-and-service/mykverneland/" class="btn" target="_blank">See the page</a>
 				</div>
 				<div class="page-card">
 					<h3>Product Information Page</h3>
-					<img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='250'%3E%3Crect fill='%23444' width='300' height='250'/%3E%3Ctext x='50%25' y='50%25' font-size='16' fill='%23ffb400' text-anchor='middle' dominant-baseline='middle' font-weight='bold'%3EProduct Page Mockup%3C/text%3E%3C/svg%3E" alt="Product Page" />
+					<img src="https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/8yjztmdl/ewv/bud/tvo/mockup%20xhd.png" alt="Product Page" />
 					<p>Developed a landing page to promote a new spare parts product, offering long-lasting performance for all agricultural machinery.</p>
 					<a href="https://ien.kverneland.com/parts-and-service/xhd-carbide-reinforced-parts/kverneland-cultivator-xhd-parts" class="btn" target="_blank">See the page</a>
 				</div>
 				<div class="page-card">
 					<h3>Promotional Landing Page</h3>
-					<img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='250'%3E%3Crect fill='%23555' width='300' height='250'/%3E%3Ctext x='50%25' y='50%25' font-size='16' fill='%23ff9900' text-anchor='middle' dominant-baseline='middle' font-weight='bold'%3EPromo Page Mockup%3C/text%3E%3C/svg%3E" alt="Promo Page" />
+					<img src="https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/8yjztmdl/jp1/evu/lcj/mockup%20terr.png" alt="Promo Page" />
 					<p>Developed a landing page to highlight an all-in-one marketplace for Agriculture, Construction, and Ground Care. Showcasing key milestones and services.</p>
 					<a href="https://terrako-eu.github.io/terrako/" class="btn" target="_blank">See the page</a>
 				</div>
@@ -567,19 +804,19 @@
 			<div class="strategies-grid">
 				<div class="strategy-card">
 					<h3>Marketplace Editorial Strategy</h3>
-					<img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='300'%3E%3Crect fill='%231a1a1a' width='280' height='300'/%3E%3Ctext x='50%25' y='50%25' font-size='14' fill='%23ff9900' text-anchor='middle' dominant-baseline='middle' font-weight='bold'%3ETerrako Strategy%3C/text%3E%3C/svg%3E" alt="Terrako Strategy" />
+					<img src="https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/8yjztmdl/ics/4x9/uh7/feed3.png" alt="Terrako Strategy" />
 					<p>I developed an editorial strategy for <strong>Terrako</strong>, focusing on awareness, consideration, and conversion phases with clear content pillars.</p>
 					<a href="https://xd.adobe.com/view/11db88a8-b400-4925-8937-5efef2b344e5-4488/" class="btn" target="_blank">See prototype</a>
 				</div>
 				<div class="strategy-card">
 					<h3>Beauty Institute Editorial Strategy</h3>
-					<img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='300'%3E%3Crect fill='%23333' width='280' height='300'/%3E%3Ctext x='50%25' y='50%25' font-size='14' fill='%23ffb400' text-anchor='middle' dominant-baseline='middle' font-weight='bold'%3EInstitut Strategy%3C/text%3E%3C/svg%3E" alt="Institut d'Amour Strategy" />
+					<img src="https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/8yjztmdl/777/l5j/9he/feed2.png" alt="Institut d'Amour Strategy" />
 					<p>For <strong>Institut d'Amour</strong>, I created an editorial strategy around women's well-being with a soothing and welcoming tone.</p>
 					<a href="https://xd.adobe.com/view/120cdfea-b1fc-4676-823e-be989a6fdfee-475f/" class="btn" target="_blank">See prototype</a>
 				</div>
 				<div class="strategy-card">
 					<h3>Start-Up Editorial Strategy</h3>
-					<img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='300'%3E%3Crect fill='%23444' width='280' height='300'/%3E%3Ctext x='50%25' y='50%25' font-size='14' fill='%23ff9900' text-anchor='middle' dominant-baseline='middle' font-weight='bold'%3ETapLink Strategy%3C/text%3E%3C/svg%3E" alt="TapLink Strategy" />
+					<img src="https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/8yjztmdl/lk9/alk/3zd/feed1.png" alt="TapLink Strategy" />
 					<p>For <strong>TapLink</strong>, I developed an editorial strategy showcasing user experience with focus on clear communication and brand mission.</p>
 					<a href="https://xd.adobe.com/view/dba13552-acd4-4610-ac4b-6a71f7f189c2-8ef2/" class="btn" target="_blank">See prototype</a>
 				</div>
@@ -653,5 +890,23 @@
 			</div>
 		</div>
 	</footer>
+
+	<script>
+		const hamburger = document.getElementById('hamburger');
+		const nav = document.getElementById('nav');
+		const navLinks = nav.querySelectorAll('a');
+
+		hamburger.addEventListener('click', () => {
+			hamburger.classList.toggle('active');
+			nav.classList.toggle('active');
+		});
+
+		navLinks.forEach(link => {
+			link.addEventListener('click', () => {
+				hamburger.classList.remove('active');
+				nav.classList.remove('active');
+			});
+		});
+	</script>
 </body>
 </html>
