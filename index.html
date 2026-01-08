@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="fr">
 <head>
 	<meta charset="utf-8" />
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
-	<title>Lotfi TBER — Digital Marketing Manager (Strategy, Growth, Data & Content)</title>
-	<meta name="description" content="Digital Marketing Manager driving B2B growth through SEO, paid media, social content, analytics and reporting automation across multi-brand, international environments." />
+	<title>Lotfi TBER — Digital Marketing Manager</title>
+	<meta name="description" content="Digital Marketing Manager driving B2B growth through SEO, paid media, social content, analytics and reporting automation." />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 	<style>
 		* {
@@ -25,10 +25,121 @@
 			overflow-x: hidden;
 		}
 
+		/* POPUP DE SÉLECTION DE LANGUE */
+		.language-popup-overlay {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: rgba(0, 0, 0, 0.95);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			z-index: 10000;
+			opacity: 1;
+			transition: opacity 0.5s ease;
+		}
+
+		.language-popup-overlay.hidden {
+			opacity: 0;
+			pointer-events: none;
+		}
+
+		.language-popup {
+			background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+			padding: 60px 50px;
+			border-radius: 20px;
+			text-align: center;
+			box-shadow: 0 20px 60px rgba(255, 153, 0, 0.4);
+			border: 2px solid #ff9900;
+			animation: popupSlideIn 0.6s ease;
+			max-width: 500px;
+			width: 90%;
+		}
+
+		@keyframes popupSlideIn {
+			from {
+				opacity: 0;
+				transform: translateY(-50px) scale(0.9);
+			}
+			to {
+				opacity: 1;
+				transform: translateY(0) scale(1);
+			}
+		}
+
+		.language-popup h2 {
+			color: #ffffff;
+			font-size: 32px;
+			margin-bottom: 15px;
+			font-weight: 700;
+		}
+
+		.language-popup p {
+			color: #cccccc;
+			font-size: 16px;
+			margin-bottom: 40px;
+		}
+
+		.language-buttons {
+			display: flex;
+			gap: 20px;
+			justify-content: center;
+			flex-wrap: wrap;
+		}
+
+		.language-btn {
+			background: linear-gradient(135deg, #ff9900 0%, #ffb400 100%);
+			color: #000000;
+			border: none;
+			padding: 18px 45px;
+			font-size: 18px;
+			font-weight: 700;
+			border-radius: 10px;
+			cursor: pointer;
+			transition: all 0.4s ease;
+			display: flex;
+			align-items: center;
+			gap: 12px;
+			box-shadow: 0 5px 20px rgba(255, 153, 0, 0.3);
+		}
+
+		.language-btn:hover {
+			transform: translateY(-5px) scale(1.05);
+			box-shadow: 0 10px 40px rgba(255, 153, 0, 0.6);
+			background: linear-gradient(135deg, #ffb400 0%, #ff9900 100%);
+		}
+
+		.language-btn i {
+			font-size: 24px;
+		}
+
 		.container {
 			max-width: 1200px;
 			margin: 0 auto;
 			padding: 0 20px;
+		}
+
+		/* Bouton de changement de langue dans le header */
+		.lang-switch {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			background: transparent;
+			border: 2px solid #ff9900;
+			color: #ffffff;
+			padding: 8px 18px;
+			border-radius: 6px;
+			cursor: pointer;
+			font-size: 14px;
+			font-weight: 700;
+			transition: all 0.3s ease;
+		}
+
+		.lang-switch:hover {
+			background: #ff9900;
+			color: #000000;
 		}
 
 		/* Header Navigation */
@@ -46,6 +157,7 @@
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
+			gap: 20px;
 		}
 
 		.logo h1 {
@@ -58,6 +170,12 @@
 
 		.logo h1 span {
 			color: #ffffff;
+		}
+
+		.header-right {
+			display: flex;
+			align-items: center;
+			gap: 20px;
 		}
 
 		.hamburger {
@@ -707,6 +825,15 @@
 			margin-top: 20px;
 		}
 
+		/* Masquer les sections de langue */
+		.lang-section {
+			display: none;
+		}
+
+		.lang-section.active {
+			display: block;
+		}
+
 		/* Animations */
 		@keyframes slideInLeft {
 			from {
@@ -838,7 +965,7 @@
 			}
 
 			nav.active {
-				max-height: 300px;
+				max-height: 400px;
 				padding: 20px;
 			}
 
@@ -850,6 +977,12 @@
 
 			header .container {
 				position: relative;
+				flex-wrap: wrap;
+			}
+
+			.header-right {
+				order: 2;
+				width: auto;
 			}
 
 			.logo h1 {
@@ -911,6 +1044,23 @@
 				width: 50px;
 				height: 50px;
 				font-size: 20px;
+			}
+
+			.language-popup {
+				padding: 40px 30px;
+			}
+
+			.language-popup h2 {
+				font-size: 26px;
+			}
+
+			.language-buttons {
+				flex-direction: column;
+			}
+
+			.language-btn {
+				width: 100%;
+				justify-content: center;
 			}
 		}
 
@@ -982,264 +1132,598 @@
 				bottom: 15px;
 				right: 15px;
 			}
+
+			.language-popup h2 {
+				font-size: 22px;
+			}
+
+			.language-btn {
+				padding: 15px 30px;
+				font-size: 16px;
+			}
 		}
 	</style>
 </head>
 <body>
-	<!-- Header -->
-	<header>
-		<div class="container">
-			<div class="logo">
-				<h1><span>Lotfi</span> TBER.</h1>
-			</div>
-			<button class="hamburger" id="hamburger">
-				<span></span>
-				<span></span>
-				<span></span>
-			</button>
-			<nav id="nav">
-				<a href="#about">About Me</a>
-				<a href="#projects">Projects</a>
-				<a href="#landing">Landing Pages</a>
-				<a href="#social">Social Media</a>
-				<a href="#workflow">How I Work</a>
-				<a href="#contact">Contact</a>
-			</nav>
-		</div>
-	</header>
-
-	<!-- Hero Section -->
-	<section class="hero">
-		<div class="container">
-			<div class="hero-content">
-				<h2>Turning strategy into measurable growth.</h2>
-				<p class="hero-quote">Digital Marketing Manager — Strategy • Growth • Data • Content</p>
+	<!-- Popup de sélection de langue -->
+	<div class="language-popup-overlay" id="languagePopup">
+		<div class="language-popup">
+			<h2>Choose Your Language</h2>
+			<p>Choisissez votre langue</p>
+			<div class="language-buttons">
+				<button class="language-btn" onclick="selectLanguage('fr')">
+					<i class="fas fa-flag"></i>
+					Français
+				</button>
+				<button class="language-btn" onclick="selectLanguage('en')">
+					<i class="fas fa-flag"></i>
+					English
+				</button>
 			</div>
 		</div>
-	</section>
+	</div>
 
-	<!-- About Section -->
-	<section class="about" id="about">
-		<div class="container">
-			<div>
-				<h2>About Me</h2>
-				<p>I’m a <strong>Digital Marketing Manager</strong> focused on building <strong>scalable, performance-driven digital ecosystems</strong> across <strong>B2B</strong>, multi-brand and international contexts.</p>
-				<p>My work spans <strong>SEO & UX optimization</strong> (audits, SEMrush, GSC), <strong>paid acquisition</strong> (Google Ads & Meta Ads), <strong>social media strategy</strong>, and <strong>data-driven reporting</strong>, including <strong>automation (GA4 → PowerPoint via Python)</strong> to accelerate decision-making.</p>
-				<p>I enjoy operating at the intersection of <strong>content, performance and operations</strong>: aligning stakeholders, turning technical topics into clear narratives, and continuously improving what drives impact.</p>
+	<!-- VERSION FRANÇAISE -->
+	<div class="lang-section" id="lang-fr">
+		<!-- Header -->
+		<header>
+			<div class="container">
+				<div class="logo">
+					<h1><span>Lotfi</span> TBER.</h1>
+				</div>
+				<div class="header-right">
+					<button class="hamburger" id="hamburger-fr">
+						<span></span>
+						<span></span>
+						<span></span>
+					</button>
+					<button class="lang-switch" onclick="switchLanguage('en')">
+						<i class="fas fa-globe"></i>
+						English
+					</button>
+				</div>
+				<nav id="nav-fr">
+					<a href="#about-fr">À Propos</a>
+					<a href="#projects-fr">Projets</a>
+					<a href="#landing-fr">Landing Pages</a>
+					<a href="#social-fr">Réseaux Sociaux</a>
+					<a href="#workflow-fr">Ma Méthode</a>
+					<a href="#contact-fr">Contact</a>
+				</nav>
 			</div>
-			<div>
-				<img src="https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/8yjztmdl/276/p01/krc/pdpvf.png" alt="Lotfi Portrait" />
-			</div>
-		</div>
-	</section>
+		</header>
 
-	<!-- Main Projects Section -->
-	<section class="projects" id="projects">
-		<div class="container">
-			<h2>Discover My Main Projects</h2>
-			<div class="projects-intro">
-				<p>From global brands to B2B environments, I’ve delivered campaigns and digital projects combining <strong>strategy, execution and measurable performance</strong>. Here are a few highlights:</p>
-			</div>
-			<div class="projects-grid">
-				<div class="project-card">
-					<h3>Yves Rocher: Famille Bio Campaign</h3>
-					<img src="https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/8yjztmdl/ced/knp/fej/pr1.png" alt="Yves Rocher Project" />
-					<p>Supported a multi-market social activation for the Famille Bio range with an editorial plan, engaging formats (quizzes, highlights), creator activations and performance follow-up to strengthen awareness and engagement.</p>
-				</div>
-				<div class="project-card">
-					<h3>Bridgestone: Olympic Games Campaign</h3>
-					<img src="https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/8yjztmdl/bf7/ioe/ny1/pr2.png" alt="Bridgestone Project" />
-					<p>Contributed to a Paris 2024 digital program across channels (social, landing pages, email), with tracking (UTMs), reporting and optimization to improve participation and retention.</p>
-				</div>
-				<div class="project-card">
-					<h3>Kverneland: XHD Carbide Campaign</h3>
-					<img src="https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/8yjztmdl/jr7/vfg/3g7/pr3.png" alt="Kverneland Project" />
-					<p>Supported a 360° After-Sales campaign by boosting visibility through targeted acquisition and aligning UX/landing page experience to drive qualified traffic and product discovery.</p>
+		<!-- Hero Section -->
+		<section class="hero">
+			<div class="container">
+				<div class="hero-content">
+					<h2>Transformer la stratégie en croissance mesurable.</h2>
+					<p class="hero-quote">Digital Marketing Manager — Stratégie • Croissance • Data • Contenu</p>
 				</div>
 			</div>
-		</div>
-	</section>
+		</section>
 
-	<!-- Landing Pages Section -->
-	<section class="landing-pages" id="landing">
-		<div class="container">
-			<h2>Landing Pages I've Created</h2>
-			<div class="landing-pages-intro">
-				<p>I design landing pages that balance <strong>clarity, UX and conversion</strong>: structured messaging, SEO foundations, tracking-ready setups, and layouts built to guide users from interest to action.</p>
-			</div>
-			<div class="pages-grid">
-				<div class="page-card">
-					<h3>Service Information Page</h3>
-					<img src="https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/8yjztmdl/msk/7sg/44j/mockupmykv.png" alt="Service Page" />
-					<p>Built a service page to promote a digital platform for farmers and contractors, focusing on clear value propositions, structured content, and frictionless access to information.</p>
-					<a href="https://ien.kverneland.com/parts-and-service/mykverneland/" class="btn" target="_blank">See the page</a>
+		<!-- About Section -->
+		<section class="about" id="about-fr">
+			<div class="container">
+				<div>
+					<h2>À Propos de Moi</h2>
+					<p>Je suis <strong>Digital Marketing Manager</strong>, spécialisé dans la création d'<strong>écosystèmes digitaux scalables et orientés performance</strong> dans des environnements <strong>B2B</strong>, multi-marques et internationaux.</p>
+					<p>Mon expertise couvre l'<strong>optimisation SEO & UX</strong> (audits, SEMrush, GSC), l'<strong>acquisition payante</strong> (Google Ads & Meta Ads), la <strong>stratégie de contenu social</strong>, et le <strong>reporting data-driven</strong>, incluant l'<strong>automatisation (GA4 → PowerPoint via Python)</strong> pour accélérer la prise de décision.</p>
+					<p>J'aime opérer à l'intersection du <strong>contenu, de la performance et des opérations</strong> : aligner les parties prenantes, transformer des sujets techniques en narratifs clairs, et améliorer en continu ce qui génère de l'impact.</p>
 				</div>
-				<div class="page-card">
-					<h3>Product Information Page</h3>
-					<img src="https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/8yjztmdl/ewv/bud/tvo/mockup%20xhd.png" alt="Product Page" />
-					<p>Created a product page for a spare parts launch, combining technical clarity, SEO structure and conversion-focused messaging to improve product understanding and intent.</p>
-					<a href="https://ien.kverneland.com/parts-and-service/xhd-carbide-reinforced-parts/kverneland-cultivator-xhd-parts" class="btn" target="_blank">See the page</a>
-				</div>
-				<div class="page-card">
-					<h3>Promotional Landing Page</h3>
-					<img src="https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/8yjztmdl/jp1/evu/lcj/mockup%20terr.png" alt="Promo Page" />
-					<p>Built a promotional page for Terrako, positioning it as a single marketplace connected to local dealers across Agriculture, Construction and Ground Care.</p>
-					<a href="https://terrako-eu.github.io/terrako/" class="btn" target="_blank">See the page</a>
+				<div>
+					<img src="https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/8yjztmdl/276/p01/krc/pdpvf.png" alt="Portrait de Lotfi" />
 				</div>
 			</div>
-		</div>
-	</section>
+		</section>
 
-	<!-- Social Media Section -->
-	<section class="social-media" id="social">
-		<div class="container">
-			<h2>Social Media Content I've Created</h2>
-			<div class="social-intro">
-				<p>I build social systems that are both creative and operational: <strong>content pillars, clear workflows, reusable prompts</strong>, and formats designed to perform (organic and paid) while staying brand-consistent across markets.</p>
-			</div>
-			<div class="strategies-grid">
-				<div class="strategy-card">
-					<h3>Marketplace Editorial Strategy</h3>
-					<img src="https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/8yjztmdl/ics/4x9/uh7/feed3.png" alt="Terrako Strategy" />
-					<p>Defined Terrako’s editorial strategy: brand positioning, content pillars, platform-first messaging and a structured funnel approach (awareness → consideration → conversion).</p>
-					<a href="https://xd.adobe.com/view/11db88a8-b400-4925-8937-5efef2b344e5-4488/" class="btn" target="_blank">See prototype</a>
+		<!-- Main Projects Section -->
+		<section class="projects" id="projects-fr">
+			<div class="container">
+				<h2>Découvrez Mes Projets Principaux</h2>
+				<div class="projects-intro">
+					<p>Des grandes marques aux environnements B2B, j'ai livré des campagnes et projets digitaux alliant <strong>stratégie, exécution et performance mesurable</strong>. Voici quelques highlights :</p>
 				</div>
-				<div class="strategy-card">
-					<h3>Beauty Institute Editorial Strategy</h3>
-					<img src="https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/8yjztmdl/777/l5j/9he/feed2.png" alt="Institut d'Amour Strategy" />
-					<p>Created an editorial framework focused on well-being: tone of voice, consistent visual identity, content rhythm and engagement-friendly formats.</p>
-					<a href="https://xd.adobe.com/view/120cdfea-b1fc-4676-823e-be989a6fdfee-475f/" class="btn" target="_blank">See prototype</a>
-				</div>
-				<div class="strategy-card">
-					<h3>Start-Up Editorial Strategy</h3>
-					<img src="https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/8yjztmdl/lk9/alk/3zd/feed1.png" alt="TapLink Strategy" />
-					<p>Built a start-up editorial strategy centered on product clarity and value communication, with content pillars and simple, scalable templates.</p>
-					<a href="https://xd.adobe.com/view/dba13552-acd4-4610-ac4b-6a71f7f189c2-8ef2/" class="btn" target="_blank">See prototype</a>
+				<div class="projects-grid">
+					<div class="project-card">
+						<h3>Yves Rocher : Campagne Famille Bio</h3>
+						<img src="https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/8yjztmdl/ced/knp/fej/pr1.png" alt="Projet Yves Rocher" />
+						<p>Soutenu une activation sociale multi-marchés pour la gamme Famille Bio avec un planning éditorial, des formats engageants (quiz, stories), des activations créateurs et un suivi de performance pour renforcer la notoriété et l'engagement.</p>
+					</div>
+					<div class="project-card">
+						<h3>Bridgestone : Campagne Jeux Olympiques</h3>
+						<img src="https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/8yjztmdl/bf7/ioe/ny1/pr2.png" alt="Projet Bridgestone" />
+						<p>Contribué à un programme digital Paris 2024 sur tous les canaux (social, landing pages, email), avec tracking (UTMs), reporting et optimisation pour améliorer la participation et la rétention.</p>
+					</div>
+					<div class="project-card">
+						<h3>Kverneland : Campagne XHD Carbide</h3>
+						<img src="https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/8yjztmdl/jr7/vfg/3g7/pr3.png" alt="Projet Kverneland" />
+						<p>Soutenu une campagne Après-Vente 360° en boostant la visibilité via l'acquisition ciblée et en alignant l'expérience UX/landing page pour générer du trafic qualifié et la découverte produit.</p>
+					</div>
 				</div>
 			</div>
-		</div>
-	</section>
+		</section>
 
-	<!-- How I Work Section -->
-	<section class="how-I-work" id="workflow">
-		<div class="container">
-			<h2>How I Work</h2>
-			<div class="workflow-grid">
-				<div class="workflow-step">
-					<div class="step-number">1</div>
-					<div class="step-title">BRIEFING</div>
-					<p>I align on objectives, audiences and KPIs, then structure priorities and workflows with stakeholders and agencies (e.g., Trello).</p>
+		<!-- Landing Pages Section -->
+		<section class="landing-pages" id="landing-fr">
+			<div class="container">
+				<h2>Landing Pages que J'ai Créées</h2>
+				<div class="landing-pages-intro">
+					<p>Je conçois des landing pages qui équilibrent <strong>clarté, UX et conversion</strong> : messaging structuré, fondations SEO, setups prêts pour le tracking, et layouts conçus pour guider les utilisateurs de l'intérêt à l'action.</p>
 				</div>
-				<div class="workflow-step">
-					<div class="step-number">2</div>
-					<div class="step-title">CREATION</div>
-					<p>I create content systems and assets (templates, briefs, prototypes) and ensure brand consistency across formats and markets.</p>
-				</div>
-				<div class="workflow-step">
-					<div class="step-number">3</div>
-					<div class="step-title">REPORTINGS</div>
-					<p>I track performance with GA4 and Looker Studio dashboards, turning data into clear insights for weekly decision-making.</p>
-				</div>
-				<div class="workflow-step">
-					<div class="step-number">4</div>
-					<div class="step-title">OPTIMIZATION</div>
-					<p>I improve what matters: SEO/UX, creatives, audiences and messaging, using a test-and-learn approach.</p>
-				</div>
-				<div class="workflow-step">
-					<div class="step-number">5</div>
-					<div class="step-title">DEPLOYMENT</div>
-					<p>I deploy campaigns across channels (organic & paid), ensure tracking is clean (UTMs), and monitor results in real time.</p>
-				</div>
-				<div class="workflow-step">
-					<div class="step-number">6</div>
-					<div class="step-title">SCALING</div>
-					<p>I scale successful playbooks through automation (reporting), reusable prompts/templates, and simplified collaboration systems.</p>
+				<div class="pages-grid">
+					<div class="page-card">
+						<h3>Page d'Information Service</h3>
+						<img src="https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/8yjztmdl/msk/7sg/44j/mockupmykv.png" alt="Page Service" />
+						<p>Construit une page de service pour promouvoir une plateforme digitale pour agriculteurs et entrepreneurs, axée sur des propositions de valeur claires, un contenu structuré et un accès sans friction à l'information.</p>
+						<a href="https://ien.kverneland.com/parts-and-service/mykverneland/" class="btn" target="_blank">Voir la page</a>
+					</div>
+					<div class="page-card">
+						<h3>Page d'Information Produit</h3>
+						<img src="https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/8yjztmdl/ewv/bud/tvo/mockup%20xhd.png" alt="Page Produit" />
+						<p>Créé une page produit pour un lancement de pièces détachées, combinant clarté technique, structure SEO et messaging orienté conversion pour améliorer la compréhension produit et l'intention.</p>
+						<a href="https://ien.kverneland.com/parts-and-service/xhd-carbide-reinforced-parts/kverneland-cultivator-xhd-parts" class="btn" target="_blank">Voir la page</a>
+					</div>
+					<div class="page-card">
+						<h3>Landing Page Promotionnelle</h3>
+						<img src="https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/8yjztmdl/jp1/evu/lcj/mockup%20terr.png" alt="Page Promo" />
+						<p>Construit une page promotionnelle pour Terrako, le positionnant comme une marketplace unique connectée aux concessionnaires locaux dans l'Agriculture, la Construction et l'Entretien des Espaces Verts.</p>
+						<a href="https://terrako-eu.github.io/terrako/" class="btn" target="_blank">Voir la page</a>
+					</div>
 				</div>
 			</div>
-		</div>
-	</section>
+		</section>
 
-	<!-- Contact Section -->
-	<section class="contact" id="contact">
-		<div class="container">
-			<h2>Get In Touch</h2>
-			<p class="contact-intro">Want to discuss a role, a project, or a collaboration? I’m happy to connect, feel free to reach out via email, phone, or LinkedIn.</p>
-			<div class="contact-buttons">
-				<a href="https://github.com/lotfiltb/portfolio-page/raw/main/Curriculum_vitae_fr_Lotfi_TBER_2026_FV.pdf" class="btn" download>Download My Resume</a>
-				<a href="tel:+33613134713" class="btn">Call Me</a>
-				<a href="mailto:lotfi-tber@outlook.com?subject=Let's%20connect" class="btn">Email Me</a>
+		<!-- Social Media Section -->
+		<section class="social-media" id="social-fr">
+			<div class="container">
+				<h2>Contenu Réseaux Sociaux que J'ai Créé</h2>
+				<div class="social-intro">
+					<p>Je construis des systèmes sociaux à la fois créatifs et opérationnels : <strong>piliers de contenu, workflows clairs, prompts réutilisables</strong>, et formats conçus pour performer (organique et payant) tout en restant cohérents avec la marque sur tous les marchés.</p>
+				</div>
+				<div class="strategies-grid">
+					<div class="strategy-card">
+						<h3>Stratégie Éditoriale Marketplace</h3>
+						<img src="https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/8yjztmdl/ics/4x9/uh7/feed3.png" alt="Stratégie Terrako" />
+						<p>Défini la stratégie éditoriale de Terrako : positionnement de marque, piliers de contenu, messaging orienté plateforme et approche funnel structurée (notoriété → considération → conversion).</p>
+						<a href="https://xd.adobe.com/view/11db88a8-b400-4925-8937-5efef2b344e5-4488/" class="btn" target="_blank">Voir le prototype</a>
+					</div>
+					<div class="strategy-card">
+						<h3>Stratégie Éditoriale Institut Beauté</h3>
+						<img src="https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/8yjztmdl/777/l5j/9he/feed2.png" alt="Stratégie Institut d'Amour" />
+						<p>Créé un framework éditorial axé sur le bien-être : tone of voice, identité visuelle cohérente, rythme de contenu et formats favorisant l'engagement.</p>
+						<a href="https://xd.adobe.com/view/120cdfea-b1fc-4676-823e-be989a6fdfee-475f/" class="btn" target="_blank">Voir le prototype</a>
+					</div>
+					<div class="strategy-card">
+						<h3>Stratégie Éditoriale Start-Up</h3>
+						<img src="https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/8yjztmdl/lk9/alk/3zd/feed1.png" alt="Stratégie TapLink" />
+						<p>Construit une stratégie éditoriale start-up centrée sur la clarté produit et la communication de valeur, avec des piliers de contenu et des templates simples et scalables.</p>
+						<a href="https://xd.adobe.com/view/dba13552-acd4-4610-ac4b-6a71f7f189c2-8ef2/" class="btn" target="_blank">Voir le prototype</a>
+					</div>
+				</div>
 			</div>
-			<div class="social-links">
-				<a href="https://www.instagram.com/slow.built/" target="_blank" title="Instagram" aria-label="Instagram">
-					<i class="fab fa-instagram"></i>
-				</a>
-				<a href="https://www.linkedin.com/in/lotfi-tber/" target="_blank" title="LinkedIn" aria-label="LinkedIn">
-					<i class="fab fa-linkedin"></i>
-				</a>
-			</div>
-		</div>
-	</section>
+		</section>
 
-	<!-- Footer -->
-	<footer>
-		<div class="container">
-			<div class="footer-email">
-				<a href="mailto:lotfi-tber@outlook.com">lotfi-tber@outlook.com</a>
+		<!-- How I Work Section -->
+		<section class="how-I-work" id="workflow-fr">
+			<div class="container">
+				<h2>Ma Méthode de Travail</h2>
+				<div class="workflow-grid">
+					<div class="workflow-step">
+						<div class="step-number">1</div>
+						<div class="step-title">BRIEFING</div>
+						<p>J'aligne sur les objectifs, audiences et KPIs, puis structure les priorités et workflows avec les parties prenantes et agences (ex : Trello).</p>
+					</div>
+					<div class="workflow-step">
+						<div class="step-number">2</div>
+						<div class="step-title">CRÉATION</div>
+						<p>Je crée des systèmes de contenu et assets (templates, briefs, prototypes) et assure la cohérence de marque sur tous les formats et marchés.</p>
+					</div>
+					<div class="workflow-step">
+						<div class="step-number">3</div>
+						<div class="step-title">REPORTINGS</div>
+						<p>Je track la performance avec des dashboards GA4 et Looker Studio, transformant la data en insights clairs pour la prise de décision hebdomadaire.</p>
+					</div>
+					<div class="workflow-step">
+						<div class="step-number">4</div>
+						<div class="step-title">OPTIMISATION</div>
+						<p>J'améliore ce qui compte : SEO/UX, créatifs, audiences et messaging, en utilisant une approche test-and-learn.</p>
+					</div>
+					<div class="workflow-step">
+						<div class="step-number">5</div>
+						<div class="step-title">DÉPLOIEMENT</div>
+						<p>Je déploie les campagnes sur tous les canaux (organique & payant), assure un tracking propre (UTMs), et monitore les résultats en temps réel.</p>
+					</div>
+					<div class="workflow-step">
+						<div class="step-number">6</div>
+						<div class="step-title">SCALING</div>
+						<p>Je scale les playbooks réussis via l'automatisation (reporting), des prompts/templates réutilisables, et des systèmes de collaboration simplifiés.</p>
+					</div>
+				</div>
 			</div>
-			<div class="footer-logo">
-				<h1><span>Lotfi</span> TBER.</h1>
-			</div>
-			<div class="footer-social">
+		</section>
+
+		<!-- Contact Section -->
+		<section class="contact" id="contact-fr">
+			<div class="container">
+				<h2>Prenons Contact</h2>
+				<p class="contact-intro">Envie de discuter d'un poste, d'un projet ou d'une collaboration ? Je suis heureux d'échanger, n'hésitez pas à me contacter par email, téléphone ou LinkedIn.</p>
+				<div class="contact-buttons">
+					<a href="https://github.com/lotfiltb/portfolio-page/raw/main/Curriculum_vitae_fr_Lotfi_TBER_2026_FV.pdf" class="btn" download>Télécharger mon CV</a>
+					<a href="tel:+33613134713" class="btn">M'appeler</a>
+					<a href="mailto:lotfi-tber@outlook.com?subject=Prenons%20contact" class="btn">M'envoyer un email</a>
+				</div>
 				<div class="social-links">
-					<a href="https://www.instagram.com/slow.built/" target="_blank" title="Instagram">
+					<a href="https://www.instagram.com/slow.built/" target="_blank" title="Instagram" aria-label="Instagram">
 						<i class="fab fa-instagram"></i>
 					</a>
-					<a href="https://www.linkedin.com/in/lotfi-tber/" target="_blank" title="LinkedIn">
+					<a href="https://www.linkedin.com/in/lotfi-tber/" target="_blank" title="LinkedIn" aria-label="LinkedIn">
 						<i class="fab fa-linkedin"></i>
 					</a>
 				</div>
 			</div>
-			<div class="footer-credits">
-				<p>© 2026 All Rights Reserved</p>
-			</div>
-		</div>
-	</footer>
+		</section>
 
-	<!-- Bouton Retour en Haut -->
-	<button class="back-to-top" id="backToTop" aria-label="Retour en haut">
-		<i class="fas fa-arrow-up"></i>
-	</button>
+		<!-- Footer -->
+		<footer>
+			<div class="container">
+				<div class="footer-email">
+					<a href="mailto:lotfi-tber@outlook.com">lotfi-tber@outlook.com</a>
+				</div>
+				<div class="footer-logo">
+					<h1><span>Lotfi</span> TBER.</h1>
+				</div>
+				<div class="footer-social">
+					<div class="social-links">
+						<a href="https://www.instagram.com/slow.built/" target="_blank" title="Instagram">
+							<i class="fab fa-instagram"></i>
+						</a>
+						<a href="https://www.linkedin.com/in/lotfi-tber/" target="_blank" title="LinkedIn">
+							<i class="fab fa-linkedin"></i>
+						</a>
+					</div>
+				</div>
+				<div class="footer-credits">
+					<p>© 2026 Tous Droits Réservés</p>
+				</div>
+			</div>
+		</footer>
+
+		<!-- Bouton Retour en Haut -->
+		<button class="back-to-top" id="backToTop-fr" aria-label="Retour en haut">
+			<i class="fas fa-arrow-up"></i>
+		</button>
+	</div>
+
+	<!-- VERSION ANGLAISE -->
+	<div class="lang-section" id="lang-en">
+		<!-- Header -->
+		<header>
+			<div class="container">
+				<div class="logo">
+					<h1><span>Lotfi</span> TBER.</h1>
+				</div>
+				<div class="header-right">
+					<button class="hamburger" id="hamburger-en">
+						<span></span>
+						<span></span>
+						<span></span>
+					</button>
+					<button class="lang-switch" onclick="switchLanguage('fr')">
+						<i class="fas fa-globe"></i>
+						Français
+					</button>
+				</div>
+				<nav id="nav-en">
+					<a href="#about-en">About Me</a>
+					<a href="#projects-en">Projects</a>
+					<a href="#landing-en">Landing Pages</a>
+					<a href="#social-en">Social Media</a>
+					<a href="#workflow-en">How I Work</a>
+					<a href="#contact-en">Contact</a>
+				</nav>
+			</div>
+		</header>
+
+		<!-- Hero Section -->
+		<section class="hero">
+			<div class="container">
+				<div class="hero-content">
+					<h2>Turning strategy into measurable growth.</h2>
+					<p class="hero-quote">Digital Marketing Manager — Strategy • Growth • Data • Content</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- About Section -->
+		<section class="about" id="about-en">
+			<div class="container">
+				<div>
+					<h2>About Me</h2>
+					<p>I'm a <strong>Digital Marketing Manager</strong> focused on building <strong>scalable, performance-driven digital ecosystems</strong> across <strong>B2B</strong>, multi-brand and international contexts.</p>
+					<p>My work spans <strong>SEO & UX optimization</strong> (audits, SEMrush, GSC), <strong>paid acquisition</strong> (Google Ads & Meta Ads), <strong>social media strategy</strong>, and <strong>data-driven reporting</strong>, including <strong>automation (GA4 → PowerPoint via Python)</strong> to accelerate decision-making.</p>
+					<p>I enjoy operating at the intersection of <strong>content, performance and operations</strong>: aligning stakeholders, turning technical topics into clear narratives, and continuously improving what drives impact.</p>
+				</div>
+				<div>
+					<img src="https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/8yjztmdl/276/p01/krc/pdpvf.png" alt="Lotfi Portrait" />
+				</div>
+			</div>
+		</section>
+
+		<!-- Main Projects Section -->
+		<section class="projects" id="projects-en">
+			<div class="container">
+				<h2>Discover My Main Projects</h2>
+				<div class="projects-intro">
+					<p>From global brands to B2B environments, I've delivered campaigns and digital projects combining <strong>strategy, execution and measurable performance</strong>. Here are a few highlights:</p>
+				</div>
+				<div class="projects-grid">
+					<div class="project-card">
+						<h3>Yves Rocher: Famille Bio Campaign</h3>
+						<img src="https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/8yjztmdl/ced/knp/fej/pr1.png" alt="Yves Rocher Project" />
+						<p>Supported a multi-market social activation for the Famille Bio range with an editorial plan, engaging formats (quizzes, highlights), creator activations and performance follow-up to strengthen awareness and engagement.</p>
+					</div>
+					<div class="project-card">
+						<h3>Bridgestone: Olympic Games Campaign</h3>
+						<img src="https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/8yjztmdl/bf7/ioe/ny1/pr2.png" alt="Bridgestone Project" />
+						<p>Contributed to a Paris 2024 digital program across channels (social, landing pages, email), with tracking (UTMs), reporting and optimization to improve participation and retention.</p>
+					</div>
+					<div class="project-card">
+						<h3>Kverneland: XHD Carbide Campaign</h3>
+						<img src="https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/8yjztmdl/jr7/vfg/3g7/pr3.png" alt="Kverneland Project" />
+						<p>Supported a 360° After-Sales campaign by boosting visibility through targeted acquisition and aligning UX/landing page experience to drive qualified traffic and product discovery.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Landing Pages Section -->
+		<section class="landing-pages" id="landing-en">
+			<div class="container">
+				<h2>Landing Pages I've Created</h2>
+				<div class="landing-pages-intro">
+					<p>I design landing pages that balance <strong>clarity, UX and conversion</strong>: structured messaging, SEO foundations, tracking-ready setups, and layouts built to guide users from interest to action.</p>
+				</div>
+				<div class="pages-grid">
+					<div class="page-card">
+						<h3>Service Information Page</h3>
+						<img src="https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/8yjztmdl/msk/7sg/44j/mockupmykv.png" alt="Service Page" />
+						<p>Built a service page to promote a digital platform for farmers and contractors, focusing on clear value propositions, structured content, and frictionless access to information.</p>
+						<a href="https://ien.kverneland.com/parts-and-service/mykverneland/" class="btn" target="_blank">See the page</a>
+					</div>
+					<div class="page-card">
+						<h3>Product Information Page</h3>
+						<img src="https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/8yjztmdl/ewv/bud/tvo/mockup%20xhd.png" alt="Product Page" />
+						<p>Created a product page for a spare parts launch, combining technical clarity, SEO structure and conversion-focused messaging to improve product understanding and intent.</p>
+						<a href="https://ien.kverneland.com/parts-and-service/xhd-carbide-reinforced-parts/kverneland-cultivator-xhd-parts" class="btn" target="_blank">See the page</a>
+					</div>
+					<div class="page-card">
+						<h3>Promotional Landing Page</h3>
+						<img src="https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/8yjztmdl/jp1/evu/lcj/mockup%20terr.png" alt="Promo Page" />
+						<p>Built a promotional page for Terrako, positioning it as a single marketplace connected to local dealers across Agriculture, Construction and Ground Care.</p>
+						<a href="https://terrako-eu.github.io/terrako/" class="btn" target="_blank">See the page</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Social Media Section -->
+		<section class="social-media" id="social-en">
+			<div class="container">
+				<h2>Social Media Content I've Created</h2>
+				<div class="social-intro">
+					<p>I build social systems that are both creative and operational: <strong>content pillars, clear workflows, reusable prompts</strong>, and formats designed to perform (organic and paid) while staying brand-consistent across markets.</p>
+				</div>
+				<div class="strategies-grid">
+					<div class="strategy-card">
+						<h3>Marketplace Editorial Strategy</h3>
+						<img src="https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/8yjztmdl/ics/4x9/uh7/feed3.png" alt="Terrako Strategy" />
+						<p>Defined Terrako's editorial strategy: brand positioning, content pillars, platform-first messaging and a structured funnel approach (awareness → consideration → conversion).</p>
+						<a href="https://xd.adobe.com/view/11db88a8-b400-4925-8937-5efef2b344e5-4488/" class="btn" target="_blank">See prototype</a>
+					</div>
+					<div class="strategy-card">
+						<h3>Beauty Institute Editorial Strategy</h3>
+						<img src="https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/8yjztmdl/777/l5j/9he/feed2.png" alt="Institut d'Amour Strategy" />
+						<p>Created an editorial framework focused on well-being: tone of voice, consistent visual identity, content rhythm and engagement-friendly formats.</p>
+						<a href="https://xd.adobe.com/view/120cdfea-b1fc-4676-823e-be989a6fdfee-475f/" class="btn" target="_blank">See prototype</a>
+					</div>
+					<div class="strategy-card">
+						<h3>Start-Up Editorial Strategy</h3>
+						<img src="https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/8yjztmdl/lk9/alk/3zd/feed1.png" alt="TapLink Strategy" />
+						<p>Built a start-up editorial strategy centered on product clarity and value communication, with content pillars and simple, scalable templates.</p>
+						<a href="https://xd.adobe.com/view/dba13552-acd4-4610-ac4b-6a71f7f189c2-8ef2/" class="btn" target="_blank">See prototype</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- How I Work Section -->
+		<section class="how-I-work" id="workflow-en">
+			<div class="container">
+				<h2>How I Work</h2>
+				<div class="workflow-grid">
+					<div class="workflow-step">
+						<div class="step-number">1</div>
+						<div class="step-title">BRIEFING</div>
+						<p>I align on objectives, audiences and KPIs, then structure priorities and workflows with stakeholders and agencies (e.g., Trello).</p>
+					</div>
+					<div class="workflow-step">
+						<div class="step-number">2</div>
+						<div class="step-title">CREATION</div>
+						<p>I create content systems and assets (templates, briefs, prototypes) and ensure brand consistency across formats and markets.</p>
+					</div>
+					<div class="workflow-step">
+						<div class="step-number">3</div>
+						<div class="step-title">REPORTINGS</div>
+						<p>I track performance with GA4 and Looker Studio dashboards, turning data into clear insights for weekly decision-making.</p>
+					</div>
+					<div class="workflow-step">
+						<div class="step-number">4</div>
+						<div class="step-title">OPTIMIZATION</div>
+						<p>I improve what matters: SEO/UX, creatives, audiences and messaging, using a test-and-learn approach.</p>
+					</div>
+					<div class="workflow-step">
+						<div class="step-number">5</div>
+						<div class="step-title">DEPLOYMENT</div>
+						<p>I deploy campaigns across channels (organic & paid), ensure tracking is clean (UTMs), and monitor results in real time.</p>
+					</div>
+					<div class="workflow-step">
+						<div class="step-number">6</div>
+						<div class="step-title">SCALING</div>
+						<p>I scale successful playbooks through automation (reporting), reusable prompts/templates, and simplified collaboration systems.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Contact Section -->
+		<section class="contact" id="contact-en">
+			<div class="container">
+				<h2>Get In Touch</h2>
+				<p class="contact-intro">Want to discuss a role, a project, or a collaboration? I'm happy to connect, feel free to reach out via email, phone, or LinkedIn.</p>
+				<div class="contact-buttons">
+					<a href="https://github.com/lotfiltb/portfolio-page/raw/main/Curriculum_vitae_fr_Lotfi_TBER_2026_FV.pdf" class="btn" download>Download My Resume</a>
+					<a href="tel:+33613134713" class="btn">Call Me</a>
+					<a href="mailto:lotfi-tber@outlook.com?subject=Let's%20connect" class="btn">Email Me</a>
+				</div>
+				<div class="social-links">
+					<a href="https://www.instagram.com/slow.built/" target="_blank" title="Instagram" aria-label="Instagram">
+						<i class="fab fa-instagram"></i>
+					</a>
+					<a href="https://www.linkedin.com/in/lotfi-tber/" target="_blank" title="LinkedIn" aria-label="LinkedIn">
+						<i class="fab fa-linkedin"></i>
+					</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- Footer -->
+		<footer>
+			<div class="container">
+				<div class="footer-email">
+					<a href="mailto:lotfi-tber@outlook.com">lotfi-tber@outlook.com</a>
+				</div>
+				<div class="footer-logo">
+					<h1><span>Lotfi</span> TBER.</h1>
+				</div>
+				<div class="footer-social">
+					<div class="social-links">
+						<a href="https://www.instagram.com/slow.built/" target="_blank" title="Instagram">
+							<i class="fab fa-instagram"></i>
+						</a>
+						<a href="https://www.linkedin.com/in/lotfi-tber/" target="_blank" title="LinkedIn">
+							<i class="fab fa-linkedin"></i>
+						</a>
+					</div>
+				</div>
+				<div class="footer-credits">
+					<p>© 2026 All Rights Reserved</p>
+				</div>
+			</div>
+		</footer>
+
+		<!-- Bouton Retour en Haut -->
+		<button class="back-to-top" id="backToTop-en" aria-label="Back to top">
+			<i class="fas fa-arrow-up"></i>
+		</button>
+	</div>
 
 	<script>
-		// Menu hamburger
-		const hamburger = document.getElementById('hamburger');
-		const nav = document.getElementById('nav');
-		const navLinks = nav.querySelectorAll('a');
+		// Gestion du popup de langue
+		function selectLanguage(lang) {
+			localStorage.setItem('selectedLanguage', lang);
+			document.getElementById('languagePopup').classList.add('hidden');
+			showLanguage(lang);
+		}
 
-		hamburger.addEventListener('click', () => {
-			hamburger.classList.toggle('active');
-			nav.classList.toggle('active');
-		});
+		function switchLanguage(lang) {
+			localStorage.setItem('selectedLanguage', lang);
+			showLanguage(lang);
+			window.scrollTo(0, 0);
+		}
 
-		navLinks.forEach(link => {
-			link.addEventListener('click', () => {
-				hamburger.classList.remove('active');
-				nav.classList.remove('active');
+		function showLanguage(lang) {
+			document.querySelectorAll('.lang-section').forEach(section => {
+				section.classList.remove('active');
 			});
-		});
+			document.getElementById('lang-' + lang).classList.add('active');
+			document.documentElement.lang = lang;
+		}
 
-		// Bouton Retour en Haut
-		const backToTopButton = document.getElementById('backToTop');
-
-		window.addEventListener('scroll', () => {
-			if (window.pageYOffset > 300) {
-				backToTopButton.classList.add('visible');
-			} else {
-				backToTopButton.classList.remove('visible');
+		// Au chargement de la page
+		window.addEventListener('DOMContentLoaded', () => {
+			const savedLanguage = localStorage.getItem('selectedLanguage');
+			if (savedLanguage) {
+				document.getElementById('languagePopup').classList.add('hidden');
+				showLanguage(savedLanguage);
 			}
 		});
 
-		backToTopButton.addEventListener('click', () => {
+		// Menu hamburger pour FR
+		const hamburgerFr = document.getElementById('hamburger-fr');
+		const navFr = document.getElementById('nav-fr');
+		const navLinksFr = navFr.querySelectorAll('a');
+
+		hamburgerFr.addEventListener('click', () => {
+			hamburgerFr.classList.toggle('active');
+			navFr.classList.toggle('active');
+		});
+
+		navLinksFr.forEach(link => {
+			link.addEventListener('click', () => {
+				hamburgerFr.classList.remove('active');
+				navFr.classList.remove('active');
+			});
+		});
+
+		// Menu hamburger pour EN
+		const hamburgerEn = document.getElementById('hamburger-en');
+		const navEn = document.getElementById('nav-en');
+		const navLinksEn = navEn.querySelectorAll('a');
+
+		hamburgerEn.addEventListener('click', () => {
+			hamburgerEn.classList.toggle('active');
+			navEn.classList.toggle('active');
+		});
+
+		navLinksEn.forEach(link => {
+			link.addEventListener('click', () => {
+				hamburgerEn.classList.remove('active');
+				navEn.classList.remove('active');
+			});
+		});
+
+		// Bouton Retour en Haut pour FR
+		const backToTopButtonFr = document.getElementById('backToTop-fr');
+
+		window.addEventListener('scroll', () => {
+			if (window.pageYOffset > 300) {
+				backToTopButtonFr.classList.add('visible');
+			} else {
+				backToTopButtonFr.classList.remove('visible');
+			}
+		});
+
+		backToTopButtonFr.addEventListener('click', () => {
+			window.scrollTo({
+				top: 0,
+				behavior: 'smooth'
+			});
+		});
+
+		// Bouton Retour en Haut pour EN
+		const backToTopButtonEn = document.getElementById('backToTop-en');
+
+		window.addEventListener('scroll', () => {
+			if (window.pageYOffset > 300) {
+				backToTopButtonEn.classList.add('visible');
+			} else {
+				backToTopButtonEn.classList.remove('visible');
+			}
+		});
+
+		backToTopButtonEn.addEventListener('click', () => {
 			window.scrollTo({
 				top: 0,
 				behavior: 'smooth'
