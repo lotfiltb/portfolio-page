@@ -130,6 +130,7 @@
 			background-image: url('https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/8yjztmdl/t9f/fwj/3dg/test.png');
 			background-size: cover;
 			background-position: center top;
+			background-attachment: fixed;
 			color: #ffffff;
 			padding: 150px 0 200px 0;
 			text-align: left;
@@ -147,6 +148,7 @@
 			bottom: 0;
 			background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(26,26,26,0.5) 100%);
 			z-index: 1;
+			animation: overlayPulse 4s ease-in-out infinite;
 		}
 
 		.hero .container {
@@ -160,14 +162,14 @@
 			margin-bottom: 20px;
 			line-height: 1.2;
 			font-family: 'Droid Serif', Georgia, serif;
-			animation: slideInUp 0.8s ease;
+			animation: slideInUp 0.8s ease, textGlow 3s ease-in-out infinite;
 		}
 
 		.hero-quote {
 			font-size: 16px;
 			color: #cccccc;
 			margin-top: 20px;
-			animation: fadeIn 1.2s ease;
+			animation: fadeIn 1.2s ease, float 3s ease-in-out infinite;
 		}
 
 		/* About Section */
@@ -728,6 +730,42 @@
 			to {
 				opacity: 1;
 				transform: translateY(0);
+			}
+		}
+
+		@keyframes textGlow {
+			0%, 100% {
+				text-shadow: 0 0 10px rgba(255, 153, 0, 0.3);
+			}
+			50% {
+				text-shadow: 0 0 30px rgba(255, 153, 0, 0.8), 0 0 50px rgba(255, 153, 0, 0.4);
+			}
+		}
+
+		@keyframes float {
+			0%, 100% {
+				transform: translateY(0px);
+			}
+			50% {
+				transform: translateY(-10px);
+			}
+		}
+
+		@keyframes overlayPulse {
+			0%, 100% {
+				opacity: 0.7;
+			}
+			50% {
+				opacity: 0.5;
+			}
+		}
+
+		@keyframes shimmer {
+			0% {
+				background-position: -1000px 0;
+			}
+			100% {
+				background-position: 1000px 0;
 			}
 		}
 
