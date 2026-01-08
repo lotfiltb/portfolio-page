@@ -617,6 +617,45 @@
 			box-shadow: 0 10px 30px rgba(255,153,0,0.4);
 		}
 
+		/* Bouton Retour en Haut */
+		.back-to-top {
+			position: fixed;
+			bottom: 30px;
+			right: 30px;
+			width: 55px;
+			height: 55px;
+			background: linear-gradient(135deg, #ff9900 0%, #ffb400 100%);
+			color: #000000;
+			border: none;
+			border-radius: 50%;
+			font-size: 24px;
+			cursor: pointer;
+			opacity: 0;
+			visibility: hidden;
+			transition: all 0.4s ease;
+			z-index: 999;
+			box-shadow: 0 5px 20px rgba(255, 153, 0, 0.3);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.back-to-top.visible {
+			opacity: 1;
+			visibility: visible;
+			animation: bounceIn 0.6s ease;
+		}
+
+		.back-to-top:hover {
+			transform: translateY(-8px) scale(1.15);
+			box-shadow: 0 15px 40px rgba(255, 153, 0, 0.6);
+			background: linear-gradient(135deg, #ffb400 0%, #ff9900 100%);
+		}
+
+		.back-to-top:active {
+			transform: translateY(-5px) scale(1.05);
+		}
+
 		/* Footer */
 		footer {
 			background-color: #000000;
@@ -760,12 +799,21 @@
 			}
 		}
 
-		@keyframes shimmer {
+		@keyframes bounceIn {
 			0% {
-				background-position: -1000px 0;
+				opacity: 0;
+				transform: scale(0.3) translateY(20px);
+			}
+			50% {
+				opacity: 1;
+				transform: scale(1.1);
+			}
+			70% {
+				transform: scale(0.9);
 			}
 			100% {
-				background-position: 1000px 0;
+				opacity: 1;
+				transform: scale(1);
 			}
 		}
 
@@ -856,6 +904,14 @@
 				height: 45px;
 				font-size: 18px;
 			}
+
+			.back-to-top {
+				bottom: 20px;
+				right: 20px;
+				width: 50px;
+				height: 50px;
+				font-size: 20px;
+			}
 		}
 
 		@media (max-width: 480px) {
@@ -917,6 +973,14 @@
 				width: 40px;
 				height: 40px;
 				font-size: 16px;
+			}
+
+			.back-to-top {
+				width: 45px;
+				height: 45px;
+				font-size: 18px;
+				bottom: 15px;
+				right: 15px;
 			}
 		}
 	</style>
@@ -1101,7 +1165,7 @@
 			<h2>Get In Touch</h2>
 			<p class="contact-intro">If you'd like to connect with me for project collaborations, inquiries, or consultations, feel free to reach out through one of the following options:</p>
 			<div class="contact-buttons">
-				<a href="https://github.com/lotfiltb/portfolio-page/raw/main/Curriculum_vitae_IEN_Lotfi_TBER_2026_vf.pdf" class="btn" download>Download My Resume</a>
+				<a href="https://raw.githubusercontent.com/lotfitb/portfolio-page/main/Curriculum_vitae_JEN_Lotfi_TBER_2026.pdf" class="btn" target="_blank">Download My Resume</a>
 				<a href="tel:+33613134713" class="btn">Call Me</a>
 				<a href="mailto:lotfi-tber@outlook.com?subject=Let's%20connect" class="btn">Email Me</a>
 			</div>
@@ -1141,7 +1205,13 @@
 		</div>
 	</footer>
 
+	<!-- Bouton Retour en Haut -->
+	<button class="back-to-top" id="backToTop" aria-label="Retour en haut">
+		<i class="fas fa-arrow-up"></i>
+	</button>
+
 	<script>
+		// Menu hamburger
 		const hamburger = document.getElementById('hamburger');
 		const nav = document.getElementById('nav');
 		const navLinks = nav.querySelectorAll('a');
@@ -1155,6 +1225,24 @@
 			link.addEventListener('click', () => {
 				hamburger.classList.remove('active');
 				nav.classList.remove('active');
+			});
+		});
+
+		// Bouton Retour en Haut
+		const backToTopButton = document.getElementById('backToTop');
+
+		window.addEventListener('scroll', () => {
+			if (window.pageYOffset > 300) {
+				backToTopButton.classList.add('visible');
+			} else {
+				backToTopButton.classList.remove('visible');
+			}
+		});
+
+		backToTopButton.addEventListener('click', () => {
+			window.scrollTo({
+				top: 0,
+				behavior: 'smooth'
 			});
 		});
 
