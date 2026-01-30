@@ -12,1140 +12,232 @@
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 	<style>
-		* {
-			margin: 0;
-			padding: 0;
-			box-sizing: border-box;
-		}
-
-		html {
-			scroll-behavior: smooth;
-		}
-
-		body {
-			font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
-			background-color: #ffffff;
-			color: #101112;
-			line-height: 1.6;
-			overflow-x: hidden;
-		}
+		* { margin: 0; padding: 0; box-sizing: border-box; }
+		html { scroll-behavior: smooth; }
+		body { font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; background-color: #ffffff; color: #101112; line-height: 1.6; overflow-x: hidden; }
 
 		/* POPUP DE SÉLECTION DE LANGUE */
-		.language-popup-overlay {
-			position: fixed;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			background: rgba(0, 0, 0, 0.95);
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			z-index: 10000;
-			opacity: 1;
-			transition: opacity 0.5s ease;
-		}
-
-		.language-popup-overlay.hidden {
-			opacity: 0;
-			pointer-events: none;
-		}
-
-		.language-popup {
-			background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-			padding: 60px 50px;
-			border-radius: 20px;
-			text-align: center;
-			box-shadow: 0 20px 60px rgba(255, 153, 0, 0.4);
-			border: 2px solid #ff9900;
-			animation: popupSlideIn 0.6s ease;
-			max-width: 500px;
-			width: 90%;
-		}
-
-		@keyframes popupSlideIn {
-			from {
-				opacity: 0;
-				transform: translateY(-50px) scale(0.9);
-			}
-			to {
-				opacity: 1;
-				transform: translateY(0) scale(1);
-			}
-		}
-
-		.language-popup h2 {
-			color: #ffffff;
-			font-size: 32px;
-			margin-bottom: 15px;
-			font-weight: 700;
-		}
-
-		.language-popup p {
-			color: #cccccc;
-			font-size: 16px;
-			margin-bottom: 40px;
-		}
-
-		.language-buttons {
-			display: flex;
-			gap: 20px;
-			justify-content: center;
-			flex-wrap: wrap;
-		}
-
-		.language-btn {
-			background: linear-gradient(135deg, #ff9900 0%, #ffb400 100%);
-			color: #000000;
-			border: none;
-			padding: 18px 45px;
-			font-size: 18px;
-			font-weight: 700;
-			border-radius: 10px;
-			cursor: pointer;
-			transition: all 0.4s ease;
-			display: flex;
-			align-items: center;
-			gap: 12px;
-			box-shadow: 0 5px 20px rgba(255, 153, 0, 0.3);
-		}
-
-		.language-btn:hover {
-			transform: translateY(-5px) scale(1.05);
-			box-shadow: 0 10px 40px rgba(255, 153, 0, 0.6);
-			background: linear-gradient(135deg, #ffb400 0%, #ff9900 100%);
-		}
-
-		.language-btn i {
-			font-size: 24px;
-		}
-
-		.container {
-			max-width: 1200px;
-			margin: 0 auto;
-			padding: 0 20px;
-		}
-
-		/* Bouton de changement de langue dans le header */
-		.lang-switch {
-			display: flex;
-			align-items: center;
-			gap: 10px;
-			background: transparent;
-			border: 2px solid #ff9900;
-			color: #ffffff;
-			padding: 8px 18px;
-			border-radius: 6px;
-			cursor: pointer;
-			font-size: 14px;
-			font-weight: 700;
-			transition: all 0.3s ease;
-		}
-
-		.lang-switch:hover {
-			background: #ff9900;
-			color: #000000;
-		}
+		.language-popup-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); display: flex; align-items: center; justify-content: center; z-index: 10000; opacity: 1; transition: opacity 0.5s ease; }
+		.language-popup-overlay.hidden { opacity: 0; pointer-events: none; }
+		.language-popup { background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); padding: 60px 50px; border-radius: 20px; text-align: center; box-shadow: 0 20px 60px rgba(255, 153, 0, 0.4); border: 2px solid #ff9900; animation: popupSlideIn 0.6s ease; max-width: 500px; width: 90%; }
+		@keyframes popupSlideIn { from { opacity: 0; transform: translateY(-50px) scale(0.9); } to { opacity: 1; transform: translateY(0) scale(1); } }
+		.language-popup h2 { color: #ffffff; font-size: 32px; margin-bottom: 15px; font-weight: 700; }
+		.language-popup p { color: #cccccc; font-size: 16px; margin-bottom: 40px; }
+		.language-buttons { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+		.language-btn { background: linear-gradient(135deg, #ff9900 0%, #ffb400 100%); color: #000000; border: none; padding: 18px 45px; font-size: 18px; font-weight: 700; border-radius: 10px; cursor: pointer; transition: all 0.4s ease; display: flex; align-items: center; gap: 12px; box-shadow: 0 5px 20px rgba(255, 153, 0, 0.3); }
+		.language-btn:hover { transform: translateY(-5px) scale(1.05); box-shadow: 0 10px 40px rgba(255, 153, 0, 0.6); background: linear-gradient(135deg, #ffb400 0%, #ff9900 100%); }
+		.language-btn i { font-size: 24px; }
+		.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+		.lang-switch { display: flex; align-items: center; gap: 10px; background: transparent; border: 2px solid #ff9900; color: #ffffff; padding: 8px 18px; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 700; transition: all 0.3s ease; }
+		.lang-switch:hover { background: #ff9900; color: #000000; }
 
 		/* Header Navigation */
-		header {
-			background-color: #000000;
-			color: #ffffff;
-			padding: 20px 0;
-			position: sticky;
-			top: 0;
-			z-index: 100;
-			box-shadow: 0 2px 15px rgba(0,0,0,0.3);
-		}
-
-		header .container {
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			gap: 20px;
-		}
-
-		.logo h1 {
-			font-size: 28px;
-			font-weight: 700;
-			color: #ffb400;
-			letter-spacing: 1px;
-			animation: slideInLeft 0.6s ease;
-		}
-
-		.logo h1 span {
-			color: #ffffff;
-		}
-
-		.header-right {
-			display: flex;
-			align-items: center;
-			gap: 20px;
-		}
-
-		.hamburger {
-			display: none;
-			flex-direction: column;
-			cursor: pointer;
-			gap: 6px;
-			background: none;
-			border: none;
-			padding: 0;
-		}
-
-		.hamburger span {
-			width: 25px;
-			height: 3px;
-			background-color: #ffffff;
-			transition: all 0.3s;
-		}
-
-		.hamburger.active span:nth-child(1) {
-			transform: rotate(45deg) translate(8px, 8px);
-		}
-
-		.hamburger.active span:nth-child(2) {
-			opacity: 0;
-		}
-
-		.hamburger.active span:nth-child(3) {
-			transform: rotate(-45deg) translate(7px, -7px);
-		}
-
-		nav {
-			list-style: none;
-			display: flex;
-			gap: 30px;
-			flex-wrap: wrap;
-		}
-
-		nav a {
-			color: #ffffff;
-			text-decoration: none;
-			font-size: 14px;
-			transition: all 0.3s ease;
-			position: relative;
-			padding-bottom: 5px;
-		}
-
-		nav a:hover {
-			color: #ff9900;
-		}
-
-		nav a::after {
-			content: '';
-			position: absolute;
-			width: 0;
-			height: 2px;
-			bottom: 0;
-			left: 0;
-			background-color: #ff9900;
-			transition: width 0.3s ease;
-		}
-
-		nav a:hover::after {
-			width: 100%;
-		}
+		header { background-color: #000000; color: #ffffff; padding: 20px 0; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 15px rgba(0,0,0,0.3); }
+		header .container { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+		.logo h1 { font-size: 28px; font-weight: 700; color: #ffb400; letter-spacing: 1px; animation: slideInLeft 0.6s ease; }
+		.logo h1 span { color: #ffffff; }
+		.header-right { display: flex; align-items: center; gap: 20px; }
+		.hamburger { display: none; flex-direction: column; cursor: pointer; gap: 6px; background: none; border: none; padding: 0; }
+		.hamburger span { width: 25px; height: 3px; background-color: #ffffff; transition: all 0.3s; }
+		.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(8px, 8px); }
+		.hamburger.active span:nth-child(2) { opacity: 0; }
+		.hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+		nav { list-style: none; display: flex; gap: 30px; flex-wrap: wrap; }
+		nav a { color: #ffffff; text-decoration: none; font-size: 14px; transition: all 0.3s ease; position: relative; padding-bottom: 5px; }
+		nav a:hover { color: #ff9900; }
+		nav a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: 0; left: 0; background-color: #ff9900; transition: width 0.3s ease; }
+		nav a:hover::after { width: 100%; }
 
 		/* Hero Section */
-		.hero {
-			background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
-			background-image: url('https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/8yjztmdl/t9f/fwj/3dg/test.png');
-			background-size: cover;
-			background-position: center top;
-			background-attachment: fixed;
-			color: #ffffff;
-			padding: 150px 0 200px 0;
-			text-align: left;
-			position: relative;
-			overflow: hidden;
-			min-height: 600px;
-		}
-
-		.hero::before {
-			content: '';
-			position: absolute;
-			top: 0;
-			left: 0;
-			right: 0;
-			bottom: 0;
-			background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(26,26,26,0.5) 100%);
-			z-index: 1;
-			animation: overlayPulse 4s ease-in-out infinite;
-		}
-
-		.hero .container {
-			position: relative;
-			z-index: 2;
-		}
-
-		.hero-content h2 {
-			font-size: 58px;
-			font-weight: 700;
-			margin-bottom: 20px;
-			line-height: 1.2;
-			font-family: 'Droid Serif', Georgia, serif;
-			animation: slideInUp 0.8s ease, textGlow 3s ease-in-out infinite;
-		}
-
-		.hero-quote {
-			font-size: 16px;
-			color: #cccccc;
-			margin-top: 20px;
-			animation: fadeIn 1.2s ease, float 3s ease-in-out infinite;
-		}
+		.hero { background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%); background-image: url('https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/8yjztmdl/t9f/fwj/3dg/test.png'); background-size: cover; background-position: center top; background-attachment: fixed; color: #ffffff; padding: 150px 0 200px 0; text-align: left; position: relative; overflow: hidden; min-height: 600px; }
+		.hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(26,26,26,0.5) 100%); z-index: 1; animation: overlayPulse 4s ease-in-out infinite; }
+		.hero .container { position: relative; z-index: 2; }
+		.hero-content h2 { font-size: 58px; font-weight: 700; margin-bottom: 20px; line-height: 1.2; font-family: 'Droid Serif', Georgia, serif; animation: slideInUp 0.8s ease, textGlow 3s ease-in-out infinite; }
+		.hero-quote { font-size: 16px; color: #cccccc; margin-top: 20px; animation: fadeIn 1.2s ease, float 3s ease-in-out infinite; }
 
 		/* About Section */
-		.about {
-			padding: 120px 0;
-			background-color: #ffffff;
-		}
-
-		.about .container {
-			display: grid;
-			grid-template-columns: 1fr 1fr;
-			gap: 80px;
-			align-items: center;
-		}
-
-		.about h2 {
-			font-size: 36px;
-			font-weight: 700;
-			margin-bottom: 30px;
-			font-family: 'Droid Serif', Georgia, serif;
-			color: #000000;
-			animation: slideInLeft 0.8s ease;
-		}
-
-		.about p {
-			margin-bottom: 16px;
-			font-size: 16px;
-			line-height: 1.8;
-			animation: fadeIn 1s ease;
-		}
-
-		.about strong {
-			color: #ff9900;
-		}
-
-		.about img {
-			max-width: 100%;
-			height: auto;
-			border-radius: 12px;
-			box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-			transition: transform 0.5s ease, box-shadow 0.5s ease;
-			animation: slideInRight 0.8s ease;
-		}
-
-		.about img:hover {
-			transform: translateY(-10px);
-			box-shadow: 0 20px 50px rgba(255,153,0,0.3);
-		}
+		.about { padding: 120px 0; background-color: #ffffff; }
+		.about .container { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+		.about h2 { font-size: 36px; font-weight: 700; margin-bottom: 30px; font-family: 'Droid Serif', Georgia, serif; color: #000000; animation: slideInLeft 0.8s ease; }
+		.about p { margin-bottom: 16px; font-size: 16px; line-height: 1.8; animation: fadeIn 1s ease; }
+		.about strong { color: #ff9900; }
+		.about img { max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); transition: transform 0.5s ease, box-shadow 0.5s ease; animation: slideInRight 0.8s ease; }
+		.about img:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(255,153,0,0.3); }
 
 		/* Projects Section */
-		.projects {
-			background-color: #2d2d2d;
-			color: #ffffff;
-			padding: 80px 0;
-		}
-
-		.projects h2 {
-			font-size: 36px;
-			font-weight: 700;
-			margin-bottom: 20px;
-			text-align: center;
-			font-family: 'Droid Serif', Georgia, serif;
-			animation: slideInDown 0.8s ease;
-		}
-
-		.projects-intro {
-			text-align: center;
-			margin-bottom: 60px;
-			max-width: 800px;
-			margin-left: auto;
-			margin-right: auto;
-			animation: fadeIn 1s ease;
-		}
-
-		.projects-grid {
-			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-			gap: 40px;
-		}
-
-		.project-card {
-			background-color: #1a1a1a;
-			padding: 30px;
-			border-radius: 12px;
-			border: 2px solid #2A2A2A;
-			text-align: center;
-			transition: all 0.5s ease;
-			animation: fadeInUp 0.8s ease;
-		}
-
-		.project-card:hover {
-			transform: translateY(-15px);
-			border-color: #ff9900;
-			box-shadow: 0 15px 40px rgba(255,153,0,0.3);
-			background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
-		}
-
-		.project-card h3 {
-			color: #ffb400;
-			font-size: 20px;
-			margin-bottom: 15px;
-			font-weight: 700;
-			transition: color 0.3s ease;
-		}
-
-		.project-card:hover h3 {
-			color: #ff9900;
-		}
-
-		.project-card img {
-			max-width: 100%;
-			height: auto;
-			margin: 20px 0;
-			border-radius: 8px;
-			transition: transform 0.5s ease;
-		}
-
-		.project-card:hover img {
-			transform: scale(1.05);
-		}
-
-		.project-card p {
-			font-size: 15px;
-			line-height: 1.6;
-			color: #ffffff;
-			margin-bottom: 25px;
-		}
+		.projects { background-color: #2d2d2d; color: #ffffff; padding: 80px 0; }
+		.projects h2 { font-size: 36px; font-weight: 700; margin-bottom: 20px; text-align: center; font-family: 'Droid Serif', Georgia, serif; animation: slideInDown 0.8s ease; }
+		.projects-intro { text-align: center; margin-bottom: 60px; max-width: 800px; margin-left: auto; margin-right: auto; animation: fadeIn 1s ease; }
+		.projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+		.project-card { background-color: #1a1a1a; padding: 30px; border-radius: 12px; border: 2px solid #2A2A2A; text-align: center; transition: all 0.5s ease; animation: fadeInUp 0.8s ease; }
+		.project-card:hover { transform: translateY(-15px); border-color: #ff9900; box-shadow: 0 15px 40px rgba(255,153,0,0.3); background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%); }
+		.project-card h3 { color: #ffb400; font-size: 20px; margin-bottom: 15px; font-weight: 700; transition: color 0.3s ease; }
+		.project-card:hover h3 { color: #ff9900; }
+		.project-card img { max-width: 100%; height: auto; margin: 20px 0; border-radius: 8px; transition: transform 0.5s ease; }
+		.project-card:hover img { transform: scale(1.05); }
+		.project-card p { font-size: 15px; line-height: 1.6; color: #ffffff; margin-bottom: 25px; }
 
 		/* Landing Pages Section */
-		.landing-pages {
-			padding: 80px 0;
-			background-color: #ffffff;
-		}
-
-		.landing-pages h2 {
-			font-size: 36px;
-			font-weight: 700;
-			text-align: center;
-			margin-bottom: 20px;
-			font-family: 'Droid Serif', Georgia, serif;
-			animation: slideInDown 0.8s ease;
-		}
-
-		.landing-pages-intro {
-			text-align: center;
-			margin-bottom: 50px;
-			max-width: 900px;
-			margin-left: auto;
-			margin-right: auto;
-			animation: fadeIn 1s ease;
-		}
-
-		.pages-grid {
-			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-			gap: 40px;
-		}
-
-		.page-card {
-			background-color: #f9f9f9;
-			padding: 25px;
-			border-radius: 12px;
-			text-align: center;
-			transition: all 0.5s ease;
-			animation: fadeInUp 0.8s ease;
-		}
-
-		.page-card:hover {
-			background: linear-gradient(135deg, #f9f9f9 0%, #fff 100%);
-			box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-			transform: translateY(-10px);
-		}
-
-		.page-card h3 {
-			color: #ff9900;
-			font-size: 18px;
-			margin-bottom: 15px;
-			font-weight: 700;
-		}
-
-		.page-card img {
-			max-width: 100%;
-			height: auto;
-			margin: 20px 0;
-			border-radius: 8px;
-			transition: transform 0.5s ease;
-		}
-
-		.page-card:hover img {
-			transform: scale(1.05);
-		}
-
-		.page-card p {
-			font-size: 15px;
-			line-height: 1.6;
-			margin-bottom: 30px;
-		}
-
-		.btn {
-			display: inline-block;
-			background-color: #ff9900;
-			color: #000000;
-			padding: 12px 30px;
-			border-radius: 6px;
-			text-decoration: none;
-			font-weight: 700;
-			font-size: 14px;
-			transition: all 0.3s ease;
-			position: relative;
-			overflow: hidden;
-		}
-
-		.btn::before {
-			content: '';
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			width: 0;
-			height: 0;
-			background: rgba(255,255,255,0.3);
-			border-radius: 50%;
-			transform: translate(-50%, -50%);
-			transition: width 0.6s ease, height 0.6s ease;
-		}
-
-		.btn:hover::before {
-			width: 300px;
-			height: 300px;
-		}
-
-		.btn:hover {
-			background-color: #ffb400;
-			box-shadow: 0 8px 25px rgba(255,153,0,0.4);
-			transform: translateY(-3px);
-		}
+		.landing-pages { padding: 80px 0; background-color: #ffffff; }
+		.landing-pages h2 { font-size: 36px; font-weight: 700; text-align: center; margin-bottom: 20px; font-family: 'Droid Serif', Georgia, serif; animation: slideInDown 0.8s ease; }
+		.landing-pages-intro { text-align: center; margin-bottom: 50px; max-width: 900px; margin-left: auto; margin-right: auto; animation: fadeIn 1s ease; }
+		.pages-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
+		.page-card { background-color: #f9f9f9; padding: 25px; border-radius: 12px; text-align: center; transition: all 0.5s ease; animation: fadeInUp 0.8s ease; }
+		.page-card:hover { background: linear-gradient(135deg, #f9f9f9 0%, #fff 100%); box-shadow: 0 15px 40px rgba(0,0,0,0.1); transform: translateY(-10px); }
+		.page-card h3 { color: #ff9900; font-size: 18px; margin-bottom: 15px; font-weight: 700; }
+		.page-card img { max-width: 100%; height: auto; margin: 20px 0; border-radius: 8px; transition: transform 0.5s ease; }
+		.page-card:hover img { transform: scale(1.05); }
+		.page-card p { font-size: 15px; line-height: 1.6; margin-bottom: 30px; }
+		.btn { display: inline-block; background-color: #ff9900; color: #000000; padding: 12px 30px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 14px; transition: all 0.3s ease; position: relative; overflow: hidden; }
+		.btn::before { content: ''; position: absolute; top: 50%; left: 50%; width: 0; height: 0; background: rgba(255,255,255,0.3); border-radius: 50%; transform: translate(-50%, -50%); transition: width 0.6s ease, height 0.6s ease; }
+		.btn:hover::before { width: 300px; height: 300px; }
+		.btn:hover { background-color: #ffb400; box-shadow: 0 8px 25px rgba(255,153,0,0.4); transform: translateY(-3px); }
 
 		/* Social Media Section */
-		.social-media {
-			background-color: #ffffff;
-			padding: 80px 0;
-		}
+		.social-media { background-color: #ffffff; padding: 80px 0; }
+		.social-media h2 { font-size: 36px; font-weight: 700; text-align: center; margin-bottom: 30px; font-family: 'Droid Serif', Georgia, serif; animation: slideInDown 0.8s ease; }
+		.social-intro { text-align: center; margin-bottom: 50px; max-width: 900px; margin-left: auto; margin-right: auto; animation: fadeIn 1s ease; }
+		.strategies-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
+		.strategy-card { text-align: center; animation: fadeInUp 0.8s ease; }
+		.strategy-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 20px; color: #000000; }
+		.strategy-card img { max-width: 100%; height: auto; border-radius: 8px; margin-bottom: 30px; transition: all 0.5s ease; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+		.strategy-card:hover img { transform: scale(1.08) rotate(2deg); box-shadow: 0 15px 40px rgba(255,153,0,0.2); }
+		.strategy-card p { font-size: 15px; line-height: 1.6; margin-bottom: 40px; }
 
-		.social-media h2 {
-			font-size: 36px;
-			font-weight: 700;
-			text-align: center;
-			margin-bottom: 30px;
-			font-family: 'Droid Serif', Georgia, serif;
-			animation: slideInDown 0.8s ease;
-		}
-
-		.social-intro {
-			text-align: center;
-			margin-bottom: 50px;
-			max-width: 900px;
-			margin-left: auto;
-			margin-right: auto;
-			animation: fadeIn 1s ease;
-		}
-
-		.strategies-grid {
-			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-			gap: 40px;
-		}
-
-		.strategy-card {
-			text-align: center;
-			animation: fadeInUp 0.8s ease;
-		}
-
-		.strategy-card h3 {
-			font-size: 18px;
-			font-weight: 700;
-			margin-bottom: 20px;
-			color: #000000;
-		}
-
-		.strategy-card img {
-			max-width: 100%;
-			height: auto;
-			border-radius: 8px;
-			margin-bottom: 30px;
-			transition: all 0.5s ease;
-			box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-		}
-
-		.strategy-card:hover img {
-			transform: scale(1.08) rotate(2deg);
-			box-shadow: 0 15px 40px rgba(255,153,0,0.2);
-		}
-
-		.strategy-card p {
-			font-size: 15px;
-			line-height: 1.6;
-			margin-bottom: 40px;
-		}
+		/* ============================================
+		   TESTIMONIALS SECTION
+		   ============================================ */
+		.testimonials { background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%); color: #ffffff; padding: 100px 0; position: relative; overflow: hidden; }
+		.testimonials::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(255,153,0,0.03) 0%, transparent 50%); animation: testimonialsBgPulse 8s ease-in-out infinite; }
+		@keyframes testimonialsBgPulse { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(5%, 5%); } }
+		.testimonials .container { position: relative; z-index: 2; }
+		.testimonials h2 { font-size: 36px; font-weight: 700; text-align: center; margin-bottom: 20px; font-family: 'Droid Serif', Georgia, serif; animation: slideInDown 0.8s ease; }
+		.testimonials-intro { text-align: center; margin-bottom: 60px; max-width: 700px; margin-left: auto; margin-right: auto; color: #cccccc; animation: fadeIn 1s ease; }
+		.testimonials-slider { position: relative; max-width: 900px; margin: 0 auto; overflow: hidden; }
+		.testimonials-track { display: flex; transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+		.testimonial-card { min-width: 100%; padding: 0 20px; box-sizing: border-box; }
+		.testimonial-content { background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%); border-radius: 20px; padding: 50px 40px; border: 2px solid #333; position: relative; transition: all 0.5s ease; }
+		.testimonial-content:hover { border-color: #ff9900; box-shadow: 0 20px 60px rgba(255,153,0,0.2); }
+		.testimonial-quote-icon { position: absolute; top: 30px; left: 40px; font-size: 60px; color: #ff9900; opacity: 0.3; font-family: Georgia, serif; line-height: 1; }
+		.testimonial-text { font-size: 17px; line-height: 1.9; color: #e0e0e0; margin-bottom: 35px; padding-top: 20px; font-style: italic; }
+		.testimonial-author { display: flex; align-items: center; gap: 20px; border-top: 1px solid #444; padding-top: 25px; }
+		.testimonial-avatar { width: 65px; height: 65px; background: linear-gradient(135deg, #ff9900 0%, #ffb400 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 26px; color: #000000; flex-shrink: 0; box-shadow: 0 5px 20px rgba(255,153,0,0.3); }
+		.testimonial-info h4 { font-size: 18px; font-weight: 700; color: #ffffff; margin-bottom: 5px; }
+		.testimonial-info p { font-size: 14px; color: #ff9900; margin-bottom: 3px; }
+		.testimonial-info span { font-size: 12px; color: #888; }
+		.testimonials-nav { display: flex; justify-content: center; align-items: center; gap: 20px; margin-top: 50px; }
+		.testimonial-btn { width: 55px; height: 55px; background: transparent; border: 2px solid #ff9900; border-radius: 50%; color: #ff9900; font-size: 20px; cursor: pointer; transition: all 0.4s ease; display: flex; align-items: center; justify-content: center; }
+		.testimonial-btn:hover { background: #ff9900; color: #000000; transform: scale(1.1); box-shadow: 0 5px 25px rgba(255,153,0,0.4); }
+		.testimonials-dots { display: flex; gap: 12px; }
+		.testimonial-dot { width: 12px; height: 12px; background: #444; border-radius: 50%; cursor: pointer; transition: all 0.3s ease; border: none; }
+		.testimonial-dot.active { background: #ff9900; transform: scale(1.3); box-shadow: 0 0 15px rgba(255,153,0,0.5); }
+		.testimonial-dot:hover { background: #ffb400; }
 
 		/* How I Work Section */
-		.how-I-work {
-			background-color: #1a1a1a;
-			color: #ffffff;
-			padding: 80px 0;
-		}
-
-		.how-I-work h2 {
-			font-size: 36px;
-			font-weight: 700;
-			text-align: center;
-			margin-bottom: 50px;
-			font-family: 'Droid Serif', Georgia, serif;
-			animation: slideInDown 0.8s ease;
-		}
-
-		.workflow-grid {
-			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-			gap: 30px;
-		}
-
-		.workflow-step {
-			background-color: #2d2d2d;
-			padding: 30px;
-			border-radius: 12px;
-			text-align: center;
-			transition: all 0.5s ease;
-			border-left: 4px solid transparent;
-			animation: fadeInUp 0.8s ease;
-		}
-
-		.workflow-step:hover {
-			transform: translateX(10px);
-			border-left-color: #ff9900;
-			box-shadow: 0 10px 40px rgba(255,153,0,0.2);
-			background: linear-gradient(135deg, #2d2d2d 0%, #3a3a3a 100%);
-		}
-
-		.step-number {
-			font-size: 36px;
-			font-weight: 700;
-			color: #ff9900;
-			margin-bottom: 10px;
-			transition: transform 0.3s ease;
-		}
-
-		.workflow-step:hover .step-number {
-			transform: scale(1.2);
-		}
-
-		.step-title {
-			font-size: 18px;
-			font-weight: 700;
-			margin-bottom: 15px;
-		}
-
-		.workflow-step p {
-			font-size: 14px;
-			line-height: 1.6;
-			color: #cccccc;
-		}
+		.how-I-work { background-color: #1a1a1a; color: #ffffff; padding: 80px 0; }
+		.how-I-work h2 { font-size: 36px; font-weight: 700; text-align: center; margin-bottom: 50px; font-family: 'Droid Serif', Georgia, serif; animation: slideInDown 0.8s ease; }
+		.workflow-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+		.workflow-step { background-color: #2d2d2d; padding: 30px; border-radius: 12px; text-align: center; transition: all 0.5s ease; border-left: 4px solid transparent; animation: fadeInUp 0.8s ease; }
+		.workflow-step:hover { transform: translateX(10px); border-left-color: #ff9900; box-shadow: 0 10px 40px rgba(255,153,0,0.2); background: linear-gradient(135deg, #2d2d2d 0%, #3a3a3a 100%); }
+		.step-number { font-size: 36px; font-weight: 700; color: #ff9900; margin-bottom: 10px; transition: transform 0.3s ease; }
+		.workflow-step:hover .step-number { transform: scale(1.2); }
+		.step-title { font-size: 18px; font-weight: 700; margin-bottom: 15px; }
+		.workflow-step p { font-size: 14px; line-height: 1.6; color: #cccccc; }
 
 		/* Contact Section */
-		.contact {
-			background-color: #f9f9f9;
-			padding: 80px 0;
-		}
-
-		.contact .container {
-			text-align: center;
-		}
-
-		.contact h2 {
-			font-size: 36px;
-			font-weight: 700;
-			margin-bottom: 20px;
-			font-family: 'Droid Serif', Georgia, serif;
-			animation: slideInDown 0.8s ease;
-		}
-
-		.contact-intro {
-			margin-bottom: 60px;
-			font-size: 16px;
-			animation: fadeIn 1s ease;
-			max-width: 700px;
-			margin-left: auto;
-			margin-right: auto;
-		}
-
-		.contact-buttons {
-			display: flex;
-			justify-content: center;
-			gap: 30px;
-			flex-wrap: wrap;
-			margin-bottom: 80px;
-			padding: 40px 0;
-		}
-
-		.contact-buttons .btn {
-			min-width: 160px;
-		}
-
-		/* Social Media Footer */
-		.social-links {
-			display: flex;
-			justify-content: center;
-			gap: 30px;
-			margin-top: 50px;
-			animation: fadeIn 1.2s ease;
-		}
-
-		.social-links a {
-			width: 50px;
-			height: 50px;
-			background-color: #000000;
-			border-radius: 50%;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			color: #ffffff;
-			text-decoration: none;
-			transition: all 0.5s ease;
-			font-size: 20px;
-			position: relative;
-		}
-
-		.social-links a::before {
-			content: '';
-			position: absolute;
-			width: 100%;
-			height: 100%;
-			background: linear-gradient(135deg, #ff9900 0%, #ffb400 100%);
-			border-radius: 50%;
-			z-index: -1;
-			transform: scale(0);
-			transition: transform 0.5s ease;
-		}
-
-		.social-links a:hover::before {
-			transform: scale(1);
-		}
-
-		.social-links a:hover {
-			color: #000000;
-			transform: translateY(-8px) scale(1.1);
-			box-shadow: 0 10px 30px rgba(255,153,0,0.4);
-		}
+		.contact { background-color: #f9f9f9; padding: 80px 0; }
+		.contact .container { text-align: center; }
+		.contact h2 { font-size: 36px; font-weight: 700; margin-bottom: 20px; font-family: 'Droid Serif', Georgia, serif; animation: slideInDown 0.8s ease; }
+		.contact-intro { margin-bottom: 60px; font-size: 16px; animation: fadeIn 1s ease; max-width: 700px; margin-left: auto; margin-right: auto; }
+		.contact-buttons { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-bottom: 80px; padding: 40px 0; }
+		.contact-buttons .btn { min-width: 160px; }
+		.social-links { display: flex; justify-content: center; gap: 30px; margin-top: 50px; animation: fadeIn 1.2s ease; }
+		.social-links a { width: 50px; height: 50px; background-color: #000000; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #ffffff; text-decoration: none; transition: all 0.5s ease; font-size: 20px; position: relative; }
+		.social-links a::before { content: ''; position: absolute; width: 100%; height: 100%; background: linear-gradient(135deg, #ff9900 0%, #ffb400 100%); border-radius: 50%; z-index: -1; transform: scale(0); transition: transform 0.5s ease; }
+		.social-links a:hover::before { transform: scale(1); }
+		.social-links a:hover { color: #000000; transform: translateY(-8px) scale(1.1); box-shadow: 0 10px 30px rgba(255,153,0,0.4); }
 
 		/* Bouton Retour en Haut */
-		.back-to-top {
-			position: fixed;
-			bottom: 30px;
-			right: 30px;
-			width: 55px;
-			height: 55px;
-			background: linear-gradient(135deg, #ff9900 0%, #ffb400 100%);
-			color: #000000;
-			border: none;
-			border-radius: 50%;
-			font-size: 24px;
-			cursor: pointer;
-			opacity: 0;
-			visibility: hidden;
-			transition: all 0.4s ease;
-			z-index: 999;
-			box-shadow: 0 5px 20px rgba(255, 153, 0, 0.3);
-			display: flex;
-			align-items: center;
-			justify-content: center;
-		}
-
-		.back-to-top.visible {
-			opacity: 1;
-			visibility: visible;
-			animation: bounceIn 0.6s ease;
-		}
-
-		.back-to-top:hover {
-			transform: translateY(-8px) scale(1.15);
-			box-shadow: 0 15px 40px rgba(255, 153, 0, 0.6);
-			background: linear-gradient(135deg, #ffb400 0%, #ff9900 100%);
-		}
-
-		.back-to-top:active {
-			transform: translateY(-5px) scale(1.05);
-		}
+		.back-to-top { position: fixed; bottom: 30px; right: 30px; width: 55px; height: 55px; background: linear-gradient(135deg, #ff9900 0%, #ffb400 100%); color: #000000; border: none; border-radius: 50%; font-size: 24px; cursor: pointer; opacity: 0; visibility: hidden; transition: all 0.4s ease; z-index: 999; box-shadow: 0 5px 20px rgba(255, 153, 0, 0.3); display: flex; align-items: center; justify-content: center; }
+		.back-to-top.visible { opacity: 1; visibility: visible; animation: bounceIn 0.6s ease; }
+		.back-to-top:hover { transform: translateY(-8px) scale(1.15); box-shadow: 0 15px 40px rgba(255, 153, 0, 0.6); background: linear-gradient(135deg, #ffb400 0%, #ff9900 100%); }
+		.back-to-top:active { transform: translateY(-5px) scale(1.05); }
 
 		/* Footer */
-		footer {
-			background-color: #000000;
-			background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
-			color: #ffffff;
-			text-align: center;
-			padding: 50px 0;
-			border-top: 2px solid #ff9900;
-		}
-
-		footer .container {
-			text-align: center;
-		}
-
-		.footer-email {
-			margin-bottom: 20px;
-		}
-
-		.footer-email a {
-			color: #ff9900;
-			text-decoration: none;
-			font-weight: 700;
-			transition: all 0.3s ease;
-		}
-
-		.footer-email a:hover {
-			color: #ffb400;
-			text-decoration: underline;
-		}
-
-		.footer-logo h1 {
-			font-size: 24px;
-			margin: 20px 0;
-			font-weight: 700;
-			animation: slideInUp 0.8s ease;
-		}
-
-		.footer-logo h1 span {
-			color: #ffb400;
-		}
-
-		.footer-credits {
-			font-size: 13px;
-			color: #888888;
-			margin-top: 30px;
-		}
-
-		.footer-social {
-			margin-top: 20px;
-		}
-
-		/* Masquer les sections de langue */
-		.lang-section {
-			display: none;
-		}
-
-		.lang-section.active {
-			display: block;
-		}
+		footer { background-color: #000000; background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%); color: #ffffff; text-align: center; padding: 50px 0; border-top: 2px solid #ff9900; }
+		footer .container { text-align: center; }
+		.footer-email { margin-bottom: 20px; }
+		.footer-email a { color: #ff9900; text-decoration: none; font-weight: 700; transition: all 0.3s ease; }
+		.footer-email a:hover { color: #ffb400; text-decoration: underline; }
+		.footer-logo h1 { font-size: 24px; margin: 20px 0; font-weight: 700; animation: slideInUp 0.8s ease; }
+		.footer-logo h1 span { color: #ffb400; }
+		.footer-credits { font-size: 13px; color: #888888; margin-top: 30px; }
+		.footer-social { margin-top: 20px; }
+		.lang-section { display: none; }
+		.lang-section.active { display: block; }
 
 		/* Animations */
-		@keyframes slideInLeft {
-			from {
-				opacity: 0;
-				transform: translateX(-50px);
-			}
-			to {
-				opacity: 1;
-				transform: translateX(0);
-			}
-		}
-
-		@keyframes slideInRight {
-			from {
-				opacity: 0;
-				transform: translateX(50px);
-			}
-			to {
-				opacity: 1;
-				transform: translateX(0);
-			}
-		}
-
-		@keyframes slideInUp {
-			from {
-				opacity: 0;
-				transform: translateY(50px);
-			}
-			to {
-				opacity: 1;
-				transform: translateY(0);
-			}
-		}
-
-		@keyframes slideInDown {
-			from {
-				opacity: 0;
-				transform: translateY(-50px);
-			}
-			to {
-				opacity: 1;
-				transform: translateY(0);
-			}
-		}
-
-		@keyframes fadeIn {
-			from {
-				opacity: 0;
-			}
-			to {
-				opacity: 1;
-			}
-		}
-
-		@keyframes fadeInUp {
-			from {
-				opacity: 0;
-				transform: translateY(30px);
-			}
-			to {
-				opacity: 1;
-				transform: translateY(0);
-			}
-		}
-
-		@keyframes textGlow {
-			0%, 100% {
-				text-shadow: 0 0 10px rgba(255, 153, 0, 0.3);
-			}
-			50% {
-				text-shadow: 0 0 30px rgba(255, 153, 0, 0.8), 0 0 50px rgba(255, 153, 0, 0.4);
-			}
-		}
-
-		@keyframes float {
-			0%, 100% {
-				transform: translateY(0px);
-			}
-			50% {
-				transform: translateY(-10px);
-			}
-		}
-
-		@keyframes overlayPulse {
-			0%, 100% {
-				opacity: 0.7;
-			}
-			50% {
-				opacity: 0.5;
-			}
-		}
-
-		@keyframes bounceIn {
-			0% {
-				opacity: 0;
-				transform: scale(0.3) translateY(20px);
-			}
-			50% {
-				opacity: 1;
-				transform: scale(1.1);
-			}
-			70% {
-				transform: scale(0.9);
-			}
-			100% {
-				opacity: 1;
-				transform: scale(1);
-			}
-		}
+		@keyframes slideInLeft { from { opacity: 0; transform: translateX(-50px); } to { opacity: 1; transform: translateX(0); } }
+		@keyframes slideInRight { from { opacity: 0; transform: translateX(50px); } to { opacity: 1; transform: translateX(0); } }
+		@keyframes slideInUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
+		@keyframes slideInDown { from { opacity: 0; transform: translateY(-50px); } to { opacity: 1; transform: translateY(0); } }
+		@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+		@keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+		@keyframes textGlow { 0%, 100% { text-shadow: 0 0 10px rgba(255, 153, 0, 0.3); } 50% { text-shadow: 0 0 30px rgba(255, 153, 0, 0.8), 0 0 50px rgba(255, 153, 0, 0.4); } }
+		@keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
+		@keyframes overlayPulse { 0%, 100% { opacity: 0.7; } 50% { opacity: 0.5; } }
+		@keyframes bounceIn { 0% { opacity: 0; transform: scale(0.3) translateY(20px); } 50% { opacity: 1; transform: scale(1.1); } 70% { transform: scale(0.9); } 100% { opacity: 1; transform: scale(1); } }
 
 		/* Responsive */
 		@media (max-width: 768px) {
-			.hamburger {
-				display: flex;
-			}
-
-			nav {
-				position: absolute;
-				top: 70px;
-				left: 0;
-				right: 0;
-				background-color: #000000;
-				max-height: 0;
-				overflow: hidden;
-				transition: max-height 0.3s ease;
-				flex-direction: column;
-				padding: 0;
-				gap: 0;
-			}
-
-			nav.active {
-				max-height: 400px;
-				padding: 20px;
-			}
-
-			nav a {
-				display: block;
-				padding: 12px 0;
-				border-bottom: 1px solid #333;
-			}
-
-			header .container {
-				position: relative;
-				flex-wrap: wrap;
-			}
-
-			.header-right {
-				order: 2;
-				width: auto;
-			}
-
-			.logo h1 {
-				font-size: 22px;
-			}
-
-			.hero {
-				padding: 80px 0;
-			}
-
-			.hero-content h2 {
-				font-size: 36px;
-			}
-
-			.about .container {
-				grid-template-columns: 1fr;
-			}
-
-			.about h2 {
-				font-size: 28px;
-			}
-
-			.projects h2,
-			.landing-pages h2,
-			.social-media h2,
-			.how-I-work h2,
-			.contact h2 {
-				font-size: 28px;
-			}
-
-			.projects-grid,
-			.pages-grid,
-			.strategies-grid,
-			.workflow-grid {
-				grid-template-columns: 1fr;
-			}
-
-			.contact-buttons {
-				flex-direction: column;
-			}
-
-			.contact-buttons .btn {
-				width: 100%;
-			}
-
-			.social-links {
-				gap: 15px;
-			}
-
-			.social-links a {
-				width: 45px;
-				height: 45px;
-				font-size: 18px;
-			}
-
-			.back-to-top {
-				bottom: 20px;
-				right: 20px;
-				width: 50px;
-				height: 50px;
-				font-size: 20px;
-			}
-
-			.language-popup {
-				padding: 40px 30px;
-			}
-
-			.language-popup h2 {
-				font-size: 26px;
-			}
-
-			.language-buttons {
-				flex-direction: column;
-			}
-
-			.language-btn {
-				width: 100%;
-				justify-content: center;
-			}
+			.hamburger { display: flex; }
+			nav { position: absolute; top: 70px; left: 0; right: 0; background-color: #000000; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; flex-direction: column; padding: 0; gap: 0; }
+			nav.active { max-height: 400px; padding: 20px; }
+			nav a { display: block; padding: 12px 0; border-bottom: 1px solid #333; }
+			header .container { position: relative; flex-wrap: wrap; }
+			.header-right { order: 2; width: auto; }
+			.logo h1 { font-size: 22px; }
+			.hero { padding: 80px 0; }
+			.hero-content h2 { font-size: 36px; }
+			.about .container { grid-template-columns: 1fr; }
+			.about h2 { font-size: 28px; }
+			.projects h2, .landing-pages h2, .social-media h2, .how-I-work h2, .contact h2, .testimonials h2 { font-size: 28px; }
+			.projects-grid, .pages-grid, .strategies-grid, .workflow-grid { grid-template-columns: 1fr; }
+			.contact-buttons { flex-direction: column; }
+			.contact-buttons .btn { width: 100%; }
+			.social-links { gap: 15px; }
+			.social-links a { width: 45px; height: 45px; font-size: 18px; }
+			.back-to-top { bottom: 20px; right: 20px; width: 50px; height: 50px; font-size: 20px; }
+			.language-popup { padding: 40px 30px; }
+			.language-popup h2 { font-size: 26px; }
+			.language-buttons { flex-direction: column; }
+			.language-btn { width: 100%; justify-content: center; }
+			.testimonial-content { padding: 35px 25px; }
+			.testimonial-text { font-size: 15px; }
+			.testimonial-quote-icon { font-size: 40px; top: 20px; left: 25px; }
+			.testimonial-author { flex-direction: column; text-align: center; }
+			.testimonial-btn { width: 45px; height: 45px; font-size: 16px; }
 		}
-
 		@media (max-width: 480px) {
-			.container {
-				padding: 0 15px;
-			}
-
-			.logo h1 {
-				font-size: 18px;
-			}
-
-			.hero-content h2 {
-				font-size: 28px;
-			}
-
-			.about h2,
-			.projects h2,
-			.landing-pages h2,
-			.social-media h2,
-			.how-I-work h2,
-			.contact h2 {
-				font-size: 22px;
-			}
-
-			.hero,
-			.about,
-			.projects,
-			.landing-pages,
-			.social-media,
-			.how-I-work,
-			.contact {
-				padding: 50px 0;
-			}
-
-			footer {
-				padding: 30px 0;
-			}
-
-			.project-card,
-			.page-card,
-			.workflow-step {
-				padding: 20px;
-			}
-
-			.step-title {
-				font-size: 16px;
-			}
-
-			.btn {
-				padding: 10px 20px;
-				font-size: 13px;
-			}
-
-			nav a {
-				font-size: 16px;
-			}
-
-			.social-links a {
-				width: 40px;
-				height: 40px;
-				font-size: 16px;
-			}
-
-			.back-to-top {
-				width: 45px;
-				height: 45px;
-				font-size: 18px;
-				bottom: 15px;
-				right: 15px;
-			}
-
-			.language-popup h2 {
-				font-size: 22px;
-			}
-
-			.language-btn {
-				padding: 15px 30px;
-				font-size: 16px;
-			}
+			.container { padding: 0 15px; }
+			.logo h1 { font-size: 18px; }
+			.hero-content h2 { font-size: 28px; }
+			.about h2, .projects h2, .landing-pages h2, .social-media h2, .how-I-work h2, .contact h2, .testimonials h2 { font-size: 22px; }
+			.hero, .about, .projects, .landing-pages, .social-media, .how-I-work, .contact, .testimonials { padding: 50px 0; }
+			footer { padding: 30px 0; }
+			.project-card, .page-card, .workflow-step { padding: 20px; }
+			.step-title { font-size: 16px; }
+			.btn { padding: 10px 20px; font-size: 13px; }
+			nav a { font-size: 16px; }
+			.social-links a { width: 40px; height: 40px; font-size: 16px; }
+			.back-to-top { width: 45px; height: 45px; font-size: 18px; bottom: 15px; right: 15px; }
+			.language-popup h2 { font-size: 22px; }
+			.language-btn { padding: 15px 30px; font-size: 16px; }
+			.testimonial-content { padding: 30px 20px; }
+			.testimonial-avatar { width: 55px; height: 55px; font-size: 22px; }
+			.testimonials-nav { gap: 10px; }
+			.testimonials-dots { gap: 8px; }
+			.testimonial-dot { width: 10px; height: 10px; }
 		}
 	</style>
 </head>
@@ -1156,49 +248,33 @@
 			<h2>Choose Your Language</h2>
 			<p>Choisissez votre langue</p>
 			<div class="language-buttons">
-				<button class="language-btn" onclick="selectLanguage('fr')">
-					<i class="fas fa-flag"></i>
-					Français
-				</button>
-				<button class="language-btn" onclick="selectLanguage('en')">
-					<i class="fas fa-flag"></i>
-					English
-				</button>
+				<button class="language-btn" onclick="selectLanguage('fr')"><i class="fas fa-flag"></i>Français</button>
+				<button class="language-btn" onclick="selectLanguage('en')"><i class="fas fa-flag"></i>English</button>
 			</div>
 		</div>
 	</div>
 
 	<!-- VERSION FRANÇAISE -->
 	<div class="lang-section" id="lang-fr">
-		<!-- Header -->
 		<header>
 			<div class="container">
-				<div class="logo">
-					<h1><span>Lotfi</span> TBER.</h1>
-				</div>
+				<div class="logo"><h1><span>Lotfi</span> TBER.</h1></div>
 				<div class="header-right">
-					<button class="hamburger" id="hamburger-fr">
-						<span></span>
-						<span></span>
-						<span></span>
-					</button>
-					<button class="lang-switch" onclick="switchLanguage('en')">
-						<i class="fas fa-globe"></i>
-						English
-					</button>
+					<button class="hamburger" id="hamburger-fr"><span></span><span></span><span></span></button>
+					<button class="lang-switch" onclick="switchLanguage('en')"><i class="fas fa-globe"></i>English</button>
 				</div>
 				<nav id="nav-fr">
 					<a href="#about-fr">À Propos</a>
 					<a href="#projects-fr">Projets</a>
 					<a href="#landing-fr">Landing Pages</a>
 					<a href="#social-fr">Réseaux Sociaux</a>
+					<a href="#testimonials-fr">Témoignages</a>
 					<a href="#workflow-fr">Ma Méthode</a>
 					<a href="#contact-fr">Contact</a>
 				</nav>
 			</div>
 		</header>
 
-		<!-- Hero Section -->
 		<section class="hero">
 			<div class="container">
 				<div class="hero-content">
@@ -1208,7 +284,6 @@
 			</div>
 		</section>
 
-		<!-- About Section -->
 		<section class="about" id="about-fr">
 			<div class="container">
 				<div>
@@ -1217,19 +292,14 @@
 					<p>Mon expertise couvre l'<strong>optimisation SEO & UX</strong> (audits, SEMrush, GSC), l'<strong>acquisition payante</strong> (Google Ads & Meta Ads), la <strong>stratégie de contenu social</strong>, et le <strong>reporting data-driven</strong>, incluant l'<strong>automatisation (GA4 → PowerPoint via Python)</strong> pour accélérer la prise de décision.</p>
 					<p>J'aime opérer à l'intersection du <strong>contenu, de la performance et des opérations</strong> : aligner les parties prenantes, transformer des sujets techniques en narratifs clairs, et améliorer en continu ce qui génère de l'impact.</p>
 				</div>
-				<div>
-					<img src="https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/8yjztmdl/276/p01/krc/pdpvf.png" alt="Portrait de Lotfi" />
-				</div>
+				<div><img src="https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/8yjztmdl/276/p01/krc/pdpvf.png" alt="Portrait de Lotfi" /></div>
 			</div>
 		</section>
 
-		<!-- Main Projects Section -->
 		<section class="projects" id="projects-fr">
 			<div class="container">
 				<h2>Découvrez Mes Projets Principaux</h2>
-				<div class="projects-intro">
-					<p>Des grandes marques aux environnements B2B, j'ai livré des campagnes et projets digitaux alliant <strong>stratégie, exécution et performance mesurable</strong>. Voici quelques highlights :</p>
-				</div>
+				<div class="projects-intro"><p>Des grandes marques aux environnements B2B, j'ai livré des campagnes et projets digitaux alliant <strong>stratégie, exécution et performance mesurable</strong>. Voici quelques highlights :</p></div>
 				<div class="projects-grid">
 					<div class="project-card">
 						<h3>Yves Rocher : Campagne Famille Bio</h3>
@@ -1250,13 +320,10 @@
 			</div>
 		</section>
 
-		<!-- Landing Pages Section -->
 		<section class="landing-pages" id="landing-fr">
 			<div class="container">
 				<h2>Landing Pages que J'ai Créées</h2>
-				<div class="landing-pages-intro">
-					<p>Je conçois des landing pages qui équilibrent <strong>clarté, UX et conversion</strong> : messaging structuré, fondations SEO, setups prêts pour le tracking, et layouts conçus pour guider les utilisateurs de l'intérêt à l'action.</p>
-				</div>
+				<div class="landing-pages-intro"><p>Je conçois des landing pages qui équilibrent <strong>clarté, UX et conversion</strong> : messaging structuré, fondations SEO, setups prêts pour le tracking, et layouts conçus pour guider les utilisateurs de l'intérêt à l'action.</p></div>
 				<div class="pages-grid">
 					<div class="page-card">
 						<h3>Page d'Information Service</h3>
@@ -1280,13 +347,10 @@
 			</div>
 		</section>
 
-		<!-- Social Media Section -->
 		<section class="social-media" id="social-fr">
 			<div class="container">
 				<h2>Contenu Réseaux Sociaux que J'ai Créé</h2>
-				<div class="social-intro">
-					<p>Je construis des systèmes sociaux à la fois créatifs et opérationnels : <strong>piliers de contenu, workflows clairs, prompts réutilisables</strong>, et formats conçus pour performer (organique et payant) tout en restant cohérents avec la marque sur tous les marchés.</p>
-				</div>
+				<div class="social-intro"><p>Je construis des systèmes sociaux à la fois créatifs et opérationnels : <strong>piliers de contenu, workflows clairs, prompts réutilisables</strong>, et formats conçus pour performer (organique et payant) tout en restant cohérents avec la marque sur tous les marchés.</p></div>
 				<div class="strategies-grid">
 					<div class="strategy-card">
 						<h3>Stratégie Éditoriale Marketplace</h3>
@@ -1310,46 +374,128 @@
 			</div>
 		</section>
 
-		<!-- How I Work Section -->
-		<section class="how-I-work" id="workflow-fr">
+		<!-- Testimonials Section FR -->
+		<section class="testimonials" id="testimonials-fr">
 			<div class="container">
-				<h2>Ma Méthode de Travail</h2>
-				<div class="workflow-grid">
-					<div class="workflow-step">
-						<div class="step-number">1</div>
-						<div class="step-title">BRIEFING</div>
-						<p>J'aligne sur les objectifs, audiences et KPIs, puis structure les priorités et workflows avec les parties prenantes et agences (ex : Trello).</p>
+				<h2>Ce Qu'ils Disent de Moi</h2>
+				<p class="testimonials-intro">Découvrez les retours de mes anciens managers et collègues sur LinkedIn concernant mon travail, mon attitude et ma contribution à leurs équipes.</p>
+				<div class="testimonials-slider">
+					<div class="testimonials-track" id="testimonials-track-fr">
+						<div class="testimonial-card">
+							<div class="testimonial-content">
+								<div class="testimonial-quote-icon">"</div>
+								<p class="testimonial-text">Je suis ravie de vous recommander Lotfi, avec qui j'ai eu le plaisir de travailler sur plusieurs sujets, tel que des emailing internes et des créations de pages web. J'ai été impressionnée par son professionnalisme et son expertise dans le domaine du digital. Lotfi est fiable et assidu, toujours prêt à apporter sa contribution et à aider les autres membres de l'équipe. Sa capacité à gérer les situations difficiles avec calme et tact est également très appréciée. Je recommande vivement Lotfi pour son travail remarquable et son attitude positive.</p>
+								<div class="testimonial-author">
+									<div class="testimonial-avatar"><i class="fas fa-user-tie"></i></div>
+									<div class="testimonial-info">
+										<h4>Salomé NASSIVET</h4>
+										<p>Supply Chain Planner</p>
+										<span>Collègue dans la même équipe • Mai 2023</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="testimonial-card">
+							<div class="testimonial-content">
+								<div class="testimonial-quote-icon">"</div>
+								<p class="testimonial-text">J'ai eu le plaisir d'encadrer Lotfi pendant son apprentissage en tant que Digital Marketing Assistant. Lotfi a un grand désir d'apprendre et de réussir. Il a rapidement vaincu sa timidité et devenu autonome pour leader des sujets importants de l'équipe digitale: Rédaction de briefs social media, mesure des performances des campagnes digitales, création des landings pages optimisées, optimisation du site web, création de newsletter et gestion de campagnes emailing... et ce pour la France et le BNL. Lotfi a démontré un haut niveau d'autonomie, de polyvalence, et un fort engagement dans ses missions. Je recommande fortement Lotfi.</p>
+								<div class="testimonial-author">
+									<div class="testimonial-avatar"><i class="fas fa-user-check"></i></div>
+									<div class="testimonial-info">
+										<h4>Zineb Taleb</h4>
+										<p>Digital Marketing Enthusiast</p>
+										<span>Manager direct(e) • Mai 2023</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="testimonial-card">
+							<div class="testimonial-content">
+								<div class="testimonial-quote-icon">"</div>
+								<p class="testimonial-text">J'ai eu l'opportunité d'encadrer Lotfi lors de son stage dans l'équipe Digital Content chez Yves Rocher. Du brief de création de contenu, au suivi des concepts et livrables, en passant par l'accompagnement quotidien de nos marchés ou encore le monitoring et reporting de nos activités social media, Lotfi a su m'épauler et participer à l'ensemble des missions de l'équipe. Il est parfaitement bilingue, ce qui est très appréciable dans notre environnement de travail international. Rigoureux, pro-actif et perspicace Lotfi est un collaborateur que je ne peux que recommander !</p>
+								<div class="testimonial-author">
+									<div class="testimonial-avatar"><i class="fas fa-user-edit"></i></div>
+									<div class="testimonial-info">
+										<h4>Julie Kumec</h4>
+										<p>Créatrice de contenu UGC | Responsable Social Media</p>
+										<span>Manager direct(e) • Mai 2023</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="testimonial-card">
+							<div class="testimonial-content">
+								<div class="testimonial-quote-icon">"</div>
+								<p class="testimonial-text">J'ai eu le plaisir de collaborer avec Lotfi, lors de ses stages au sein du « LE CENACLE ». Avant toute chose, j'ai été impressionné par son esprit d'analyse, sa polyvalence et sa volonté d'apprendre. Il a toujours manifesté de l'intérêt pour les missions confiées. Sans oublier son assiduité et son sérieux. Un stagiaire exemplaire nous ayant apporté entière satisfaction. Nous regrettons Lotfi à l'équipe, mais nous nous réjouissant de l'avancement de sa carrière.</p>
+								<div class="testimonial-author">
+									<div class="testimonial-avatar"><i class="fas fa-user-cog"></i></div>
+									<div class="testimonial-info">
+										<h4>Zoubida Drissi Kaïtouni</h4>
+										<p>Marketing & Communication Coordinator</p>
+										<span>Fonction supérieure • Octobre 2020</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="testimonial-card">
+							<div class="testimonial-content">
+								<div class="testimonial-quote-icon">"</div>
+								<p class="testimonial-text">J'ai encadré Lotfi durant son stage axé Brand Content et ce fut un réel plaisir que de l'avoir dans l'équipe. Lotfi est une personne sur laquelle on peut compter, sérieuse et assidue. Très calme et analytique, il s'adapte rapidement aux environnements à haut rush (événementiel, tournages vidéos, bouclages rédactionnels). Je recommande son profil.</p>
+								<div class="testimonial-author">
+									<div class="testimonial-avatar"><i class="fas fa-user-graduate"></i></div>
+									<div class="testimonial-info">
+										<h4>Shehrazed Dada</h4>
+										<p>Marketing & Digital Specialist - Ph.D. Management Sc</p>
+										<span>Manager direct(e) • Juin 2020</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="testimonial-card">
+							<div class="testimonial-content">
+								<div class="testimonial-quote-icon">"</div>
+								<p class="testimonial-text">Lotfi est l'une des personnes les plus persévérantes avec qui j'ai eu l'immense plaisir de travailler, sa discipline et sa volonté d'apprendre en font l'une des meilleures personnes que j'ai côtoyé.</p>
+								<div class="testimonial-author">
+									<div class="testimonial-avatar"><i class="fas fa-user-friends"></i></div>
+									<div class="testimonial-info">
+										<h4>Badr Mohamed Ben Laswad</h4>
+										<p>Managing Partner @Yealead | ERP / CRM Consultant</p>
+										<span>Même école • Juin 2020</span>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
-					<div class="workflow-step">
-						<div class="step-number">2</div>
-						<div class="step-title">CRÉATION</div>
-						<p>Je crée des systèmes de contenu et assets (templates, briefs, prototypes) et assure la cohérence de marque sur tous les formats et marchés.</p>
+				</div>
+				<div class="testimonials-nav">
+					<button class="testimonial-btn" id="prev-btn-fr" aria-label="Témoignage précédent"><i class="fas fa-chevron-left"></i></button>
+					<div class="testimonials-dots" id="dots-fr">
+						<button class="testimonial-dot active" data-index="0"></button>
+						<button class="testimonial-dot" data-index="1"></button>
+						<button class="testimonial-dot" data-index="2"></button>
+						<button class="testimonial-dot" data-index="3"></button>
+						<button class="testimonial-dot" data-index="4"></button>
+						<button class="testimonial-dot" data-index="5"></button>
 					</div>
-					<div class="workflow-step">
-						<div class="step-number">3</div>
-						<div class="step-title">REPORTINGS</div>
-						<p>Je track la performance avec des dashboards GA4 et Looker Studio, transformant la data en insights clairs pour la prise de décision hebdomadaire.</p>
-					</div>
-					<div class="workflow-step">
-						<div class="step-number">4</div>
-						<div class="step-title">OPTIMISATION</div>
-						<p>J'améliore ce qui compte : SEO/UX, créatifs, audiences et messaging, en utilisant une approche test-and-learn.</p>
-					</div>
-					<div class="workflow-step">
-						<div class="step-number">5</div>
-						<div class="step-title">DÉPLOIEMENT</div>
-						<p>Je déploie les campagnes sur tous les canaux (organique & payant), assure un tracking propre (UTMs), et monitore les résultats en temps réel.</p>
-					</div>
-					<div class="workflow-step">
-						<div class="step-number">6</div>
-						<div class="step-title">SCALING</div>
-						<p>Je scale les playbooks réussis via l'automatisation (reporting), des prompts/templates réutilisables, et des systèmes de collaboration simplifiés.</p>
-					</div>
+					<button class="testimonial-btn" id="next-btn-fr" aria-label="Témoignage suivant"><i class="fas fa-chevron-right"></i></button>
 				</div>
 			</div>
 		</section>
 
-		<!-- Contact Section -->
+		<section class="how-I-work" id="workflow-fr">
+			<div class="container">
+				<h2>Ma Méthode de Travail</h2>
+				<div class="workflow-grid">
+					<div class="workflow-step"><div class="step-number">1</div><div class="step-title">BRIEFING</div><p>J'aligne sur les objectifs, audiences et KPIs, puis structure les priorités et workflows avec les parties prenantes et agences (ex : Trello).</p></div>
+					<div class="workflow-step"><div class="step-number">2</div><div class="step-title">CRÉATION</div><p>Je crée des systèmes de contenu et assets (templates, briefs, prototypes) et assure la cohérence de marque sur tous les formats et marchés.</p></div>
+					<div class="workflow-step"><div class="step-number">3</div><div class="step-title">REPORTINGS</div><p>Je track la performance avec des dashboards GA4 et Looker Studio, transformant la data en insights clairs pour la prise de décision hebdomadaire.</p></div>
+					<div class="workflow-step"><div class="step-number">4</div><div class="step-title">OPTIMISATION</div><p>J'améliore ce qui compte : SEO/UX, créatifs, audiences et messaging, en utilisant une approche test-and-learn.</p></div>
+					<div class="workflow-step"><div class="step-number">5</div><div class="step-title">DÉPLOIEMENT</div><p>Je déploie les campagnes sur tous les canaux (organique & payant), assure un tracking propre (UTMs), et monitore les résultats en temps réel.</p></div>
+					<div class="workflow-step"><div class="step-number">6</div><div class="step-title">SCALING</div><p>Je scale les playbooks réussis via l'automatisation (reporting), des prompts/templates réutilisables, et des systèmes de collaboration simplifiés.</p></div>
+				</div>
+			</div>
+		</section>
+
 		<section class="contact" id="contact-fr">
 			<div class="container">
 				<h2>Prenons Contact</h2>
@@ -1360,78 +506,49 @@
 					<a href="mailto:lotfi-tber@outlook.com?subject=Prenons%20contact" class="btn">M'envoyer un email</a>
 				</div>
 				<div class="social-links">
-					<a href="https://www.instagram.com/slow.built/" target="_blank" title="Instagram" aria-label="Instagram">
-						<i class="fab fa-instagram"></i>
-					</a>
-					<a href="https://www.linkedin.com/in/lotfi-tber/" target="_blank" title="LinkedIn" aria-label="LinkedIn">
-						<i class="fab fa-linkedin"></i>
-					</a>
+					<a href="https://www.instagram.com/slow.built/" target="_blank" title="Instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+					<a href="https://www.linkedin.com/in/lotfi-tber/" target="_blank" title="LinkedIn" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
 				</div>
 			</div>
 		</section>
 
-		<!-- Footer -->
 		<footer>
 			<div class="container">
-				<div class="footer-email">
-					<a href="mailto:lotfi-tber@outlook.com">lotfi-tber@outlook.com</a>
-				</div>
-				<div class="footer-logo">
-					<h1><span>Lotfi</span> TBER.</h1>
-				</div>
+				<div class="footer-email"><a href="mailto:lotfi-tber@outlook.com">lotfi-tber@outlook.com</a></div>
+				<div class="footer-logo"><h1><span>Lotfi</span> TBER.</h1></div>
 				<div class="footer-social">
 					<div class="social-links">
-						<a href="https://www.instagram.com/slow.built/" target="_blank" title="Instagram">
-							<i class="fab fa-instagram"></i>
-						</a>
-						<a href="https://www.linkedin.com/in/lotfi-tber/" target="_blank" title="LinkedIn">
-							<i class="fab fa-linkedin"></i>
-						</a>
+						<a href="https://www.instagram.com/slow.built/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+						<a href="https://www.linkedin.com/in/lotfi-tber/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
 					</div>
 				</div>
-				<div class="footer-credits">
-					<p>© 2026 Tous Droits Réservés</p>
-				</div>
+				<div class="footer-credits"><p>© 2026 Tous Droits Réservés</p></div>
 			</div>
 		</footer>
-
-		<!-- Bouton Retour en Haut -->
-		<button class="back-to-top" id="backToTop-fr" aria-label="Retour en haut">
-			<i class="fas fa-arrow-up"></i>
-		</button>
+		<button class="back-to-top" id="backToTop-fr" aria-label="Retour en haut"><i class="fas fa-arrow-up"></i></button>
 	</div>
 
 	<!-- VERSION ANGLAISE -->
 	<div class="lang-section" id="lang-en">
-		<!-- Header -->
 		<header>
 			<div class="container">
-				<div class="logo">
-					<h1><span>Lotfi</span> TBER.</h1>
-				</div>
+				<div class="logo"><h1><span>Lotfi</span> TBER.</h1></div>
 				<div class="header-right">
-					<button class="hamburger" id="hamburger-en">
-						<span></span>
-						<span></span>
-						<span></span>
-					</button>
-					<button class="lang-switch" onclick="switchLanguage('fr')">
-						<i class="fas fa-globe"></i>
-						Français
-					</button>
+					<button class="hamburger" id="hamburger-en"><span></span><span></span><span></span></button>
+					<button class="lang-switch" onclick="switchLanguage('fr')"><i class="fas fa-globe"></i>Français</button>
 				</div>
 				<nav id="nav-en">
 					<a href="#about-en">About Me</a>
 					<a href="#projects-en">Projects</a>
 					<a href="#landing-en">Landing Pages</a>
 					<a href="#social-en">Social Media</a>
+					<a href="#testimonials-en">Testimonials</a>
 					<a href="#workflow-en">How I Work</a>
 					<a href="#contact-en">Contact</a>
 				</nav>
 			</div>
 		</header>
 
-		<!-- Hero Section -->
 		<section class="hero">
 			<div class="container">
 				<div class="hero-content">
@@ -1441,7 +558,6 @@
 			</div>
 		</section>
 
-		<!-- About Section -->
 		<section class="about" id="about-en">
 			<div class="container">
 				<div>
@@ -1450,19 +566,14 @@
 					<p>My work spans <strong>SEO & UX optimization</strong> (audits, SEMrush, GSC), <strong>paid acquisition</strong> (Google Ads & Meta Ads), <strong>social media strategy</strong>, and <strong>data-driven reporting</strong>, including <strong>automation (GA4 → PowerPoint via Python)</strong> to accelerate decision-making.</p>
 					<p>I enjoy operating at the intersection of <strong>content, performance and operations</strong>: aligning stakeholders, turning technical topics into clear narratives, and continuously improving what drives impact.</p>
 				</div>
-				<div>
-					<img src="https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/8yjztmdl/276/p01/krc/pdpvf.png" alt="Lotfi Portrait" />
-				</div>
+				<div><img src="https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/8yjztmdl/276/p01/krc/pdpvf.png" alt="Lotfi Portrait" /></div>
 			</div>
 		</section>
 
-		<!-- Main Projects Section -->
 		<section class="projects" id="projects-en">
 			<div class="container">
 				<h2>Discover My Main Projects</h2>
-				<div class="projects-intro">
-					<p>From global brands to B2B environments, I've delivered campaigns and digital projects combining <strong>strategy, execution and measurable performance</strong>. Here are a few highlights:</p>
-				</div>
+				<div class="projects-intro"><p>From global brands to B2B environments, I've delivered campaigns and digital projects combining <strong>strategy, execution and measurable performance</strong>. Here are a few highlights:</p></div>
 				<div class="projects-grid">
 					<div class="project-card">
 						<h3>Yves Rocher: Famille Bio Campaign</h3>
@@ -1483,13 +594,10 @@
 			</div>
 		</section>
 
-		<!-- Landing Pages Section -->
 		<section class="landing-pages" id="landing-en">
 			<div class="container">
 				<h2>Landing Pages I've Created</h2>
-				<div class="landing-pages-intro">
-					<p>I design landing pages that balance <strong>clarity, UX and conversion</strong>: structured messaging, SEO foundations, tracking-ready setups, and layouts built to guide users from interest to action.</p>
-				</div>
+				<div class="landing-pages-intro"><p>I design landing pages that balance <strong>clarity, UX and conversion</strong>: structured messaging, SEO foundations, tracking-ready setups, and layouts built to guide users from interest to action.</p></div>
 				<div class="pages-grid">
 					<div class="page-card">
 						<h3>Service Information Page</h3>
@@ -1513,13 +621,10 @@
 			</div>
 		</section>
 
-		<!-- Social Media Section -->
 		<section class="social-media" id="social-en">
 			<div class="container">
 				<h2>Social Media Content I've Created</h2>
-				<div class="social-intro">
-					<p>I build social systems that are both creative and operational: <strong>content pillars, clear workflows, reusable prompts</strong>, and formats designed to perform (organic and paid) while staying brand-consistent across markets.</p>
-				</div>
+				<div class="social-intro"><p>I build social systems that are both creative and operational: <strong>content pillars, clear workflows, reusable prompts</strong>, and formats designed to perform (organic and paid) while staying brand-consistent across markets.</p></div>
 				<div class="strategies-grid">
 					<div class="strategy-card">
 						<h3>Marketplace Editorial Strategy</h3>
@@ -1543,46 +648,128 @@
 			</div>
 		</section>
 
-		<!-- How I Work Section -->
-		<section class="how-I-work" id="workflow-en">
+		<!-- Testimonials Section EN -->
+		<section class="testimonials" id="testimonials-en">
 			<div class="container">
-				<h2>How I Work</h2>
-				<div class="workflow-grid">
-					<div class="workflow-step">
-						<div class="step-number">1</div>
-						<div class="step-title">BRIEFING</div>
-						<p>I align on objectives, audiences and KPIs, then structure priorities and workflows with stakeholders and agencies (e.g., Trello).</p>
+				<h2>What They Say About Me</h2>
+				<p class="testimonials-intro">Discover feedback from my former managers and colleagues on LinkedIn about my work, attitude, and contribution to their teams.</p>
+				<div class="testimonials-slider">
+					<div class="testimonials-track" id="testimonials-track-en">
+						<div class="testimonial-card">
+							<div class="testimonial-content">
+								<div class="testimonial-quote-icon">"</div>
+								<p class="testimonial-text">I am delighted to recommend Lotfi, with whom I had the pleasure of working on several projects, such as internal emailing and web page creation. I was impressed by his professionalism and expertise in the digital field. Lotfi is reliable and dedicated, always ready to contribute and help other team members. His ability to handle difficult situations with calm and tact is also highly appreciated. I highly recommend Lotfi for his remarkable work and positive attitude.</p>
+								<div class="testimonial-author">
+									<div class="testimonial-avatar"><i class="fas fa-user-tie"></i></div>
+									<div class="testimonial-info">
+										<h4>Salomé NASSIVET</h4>
+										<p>Supply Chain Planner</p>
+										<span>Colleague on the same team • May 2023</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="testimonial-card">
+							<div class="testimonial-content">
+								<div class="testimonial-quote-icon">"</div>
+								<p class="testimonial-text">I had the pleasure of supervising Lotfi during his apprenticeship as a Digital Marketing Assistant. Lotfi has a great desire to learn and succeed. He quickly overcame his shyness and became autonomous in leading important digital team topics: Writing social media briefs, measuring digital campaign performance, creating optimized landing pages, website optimization, newsletter creation and email campaign management... for both France and BNL. Lotfi demonstrated a high level of autonomy, versatility, and strong commitment to his missions. I highly recommend Lotfi.</p>
+								<div class="testimonial-author">
+									<div class="testimonial-avatar"><i class="fas fa-user-check"></i></div>
+									<div class="testimonial-info">
+										<h4>Zineb Taleb</h4>
+										<p>Digital Marketing Enthusiast</p>
+										<span>Direct Manager • May 2023</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="testimonial-card">
+							<div class="testimonial-content">
+								<div class="testimonial-quote-icon">"</div>
+								<p class="testimonial-text">I had the opportunity to supervise Lotfi during his internship in the Digital Content team at Yves Rocher. From content creation briefs, to tracking concepts and deliverables, to daily support of our markets and monitoring and reporting of our social media activities, Lotfi was able to support me and participate in all team missions. He is perfectly bilingual, which is very valuable in our international work environment. Rigorous, proactive and insightful, Lotfi is a collaborator I can only recommend!</p>
+								<div class="testimonial-author">
+									<div class="testimonial-avatar"><i class="fas fa-user-edit"></i></div>
+									<div class="testimonial-info">
+										<h4>Julie Kumec</h4>
+										<p>UGC Content Creator | Social Media Manager</p>
+										<span>Direct Manager • May 2023</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="testimonial-card">
+							<div class="testimonial-content">
+								<div class="testimonial-quote-icon">"</div>
+								<p class="testimonial-text">I had the pleasure of collaborating with Lotfi during his internships at "LE CENACLE". First and foremost, I was impressed by his analytical mind, versatility, and willingness to learn. He always showed interest in the assigned tasks. Not to mention his dedication and seriousness. An exemplary intern who brought us complete satisfaction. We miss Lotfi on the team, but we are delighted about his career advancement.</p>
+								<div class="testimonial-author">
+									<div class="testimonial-avatar"><i class="fas fa-user-cog"></i></div>
+									<div class="testimonial-info">
+										<h4>Zoubida Drissi Kaïtouni</h4>
+										<p>Marketing & Communication Coordinator</p>
+										<span>Senior Position • October 2020</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="testimonial-card">
+							<div class="testimonial-content">
+								<div class="testimonial-quote-icon">"</div>
+								<p class="testimonial-text">I supervised Lotfi during his Brand Content internship and it was a real pleasure to have him on the team. Lotfi is someone you can count on, serious and dedicated. Very calm and analytical, he quickly adapts to high-rush environments (events, video shoots, editorial deadlines). I recommend his profile.</p>
+								<div class="testimonial-author">
+									<div class="testimonial-avatar"><i class="fas fa-user-graduate"></i></div>
+									<div class="testimonial-info">
+										<h4>Shehrazed Dada</h4>
+										<p>Marketing & Digital Specialist - Ph.D. Management Sc</p>
+										<span>Direct Manager • June 2020</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="testimonial-card">
+							<div class="testimonial-content">
+								<div class="testimonial-quote-icon">"</div>
+								<p class="testimonial-text">Lotfi is one of the most perseverant people I have had the immense pleasure of working with, his discipline and willingness to learn make him one of the best people I have encountered.</p>
+								<div class="testimonial-author">
+									<div class="testimonial-avatar"><i class="fas fa-user-friends"></i></div>
+									<div class="testimonial-info">
+										<h4>Badr Mohamed Ben Laswad</h4>
+										<p>Managing Partner @Yealead | ERP / CRM Consultant</p>
+										<span>Same school • June 2020</span>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
-					<div class="workflow-step">
-						<div class="step-number">2</div>
-						<div class="step-title">CREATION</div>
-						<p>I create content systems and assets (templates, briefs, prototypes) and ensure brand consistency across formats and markets.</p>
+				</div>
+				<div class="testimonials-nav">
+					<button class="testimonial-btn" id="prev-btn-en" aria-label="Previous testimonial"><i class="fas fa-chevron-left"></i></button>
+					<div class="testimonials-dots" id="dots-en">
+						<button class="testimonial-dot active" data-index="0"></button>
+						<button class="testimonial-dot" data-index="1"></button>
+						<button class="testimonial-dot" data-index="2"></button>
+						<button class="testimonial-dot" data-index="3"></button>
+						<button class="testimonial-dot" data-index="4"></button>
+						<button class="testimonial-dot" data-index="5"></button>
 					</div>
-					<div class="workflow-step">
-						<div class="step-number">3</div>
-						<div class="step-title">REPORTINGS</div>
-						<p>I track performance with GA4 and Looker Studio dashboards, turning data into clear insights for weekly decision-making.</p>
-					</div>
-					<div class="workflow-step">
-						<div class="step-number">4</div>
-						<div class="step-title">OPTIMIZATION</div>
-						<p>I improve what matters: SEO/UX, creatives, audiences and messaging, using a test-and-learn approach.</p>
-					</div>
-					<div class="workflow-step">
-						<div class="step-number">5</div>
-						<div class="step-title">DEPLOYMENT</div>
-						<p>I deploy campaigns across channels (organic & paid), ensure tracking is clean (UTMs), and monitor results in real time.</p>
-					</div>
-					<div class="workflow-step">
-						<div class="step-number">6</div>
-						<div class="step-title">SCALING</div>
-						<p>I scale successful playbooks through automation (reporting), reusable prompts/templates, and simplified collaboration systems.</p>
-					</div>
+					<button class="testimonial-btn" id="next-btn-en" aria-label="Next testimonial"><i class="fas fa-chevron-right"></i></button>
 				</div>
 			</div>
 		</section>
 
-		<!-- Contact Section -->
+		<section class="how-I-work" id="workflow-en">
+			<div class="container">
+				<h2>How I Work</h2>
+				<div class="workflow-grid">
+					<div class="workflow-step"><div class="step-number">1</div><div class="step-title">BRIEFING</div><p>I align on objectives, audiences and KPIs, then structure priorities and workflows with stakeholders and agencies (e.g., Trello).</p></div>
+					<div class="workflow-step"><div class="step-number">2</div><div class="step-title">CREATION</div><p>I create content systems and assets (templates, briefs, prototypes) and ensure brand consistency across formats and markets.</p></div>
+					<div class="workflow-step"><div class="step-number">3</div><div class="step-title">REPORTINGS</div><p>I track performance with GA4 and Looker Studio dashboards, turning data into clear insights for weekly decision-making.</p></div>
+					<div class="workflow-step"><div class="step-number">4</div><div class="step-title">OPTIMIZATION</div><p>I improve what matters: SEO/UX, creatives, audiences and messaging, using a test-and-learn approach.</p></div>
+					<div class="workflow-step"><div class="step-number">5</div><div class="step-title">DEPLOYMENT</div><p>I deploy campaigns across channels (organic & paid), ensure tracking is clean (UTMs), and monitor results in real time.</p></div>
+					<div class="workflow-step"><div class="step-number">6</div><div class="step-title">SCALING</div><p>I scale successful playbooks through automation (reporting), reusable prompts/templates, and simplified collaboration systems.</p></div>
+				</div>
+			</div>
+		</section>
+
 		<section class="contact" id="contact-en">
 			<div class="container">
 				<h2>Get In Touch</h2>
@@ -1593,169 +780,95 @@
 					<a href="mailto:lotfi-tber@outlook.com?subject=Let's%20connect" class="btn">Email Me</a>
 				</div>
 				<div class="social-links">
-					<a href="https://www.instagram.com/slow.built/" target="_blank" title="Instagram" aria-label="Instagram">
-						<i class="fab fa-instagram"></i>
-					</a>
-					<a href="https://www.linkedin.com/in/lotfi-tber/" target="_blank" title="LinkedIn" aria-label="LinkedIn">
-						<i class="fab fa-linkedin"></i>
-					</a>
+					<a href="https://www.instagram.com/slow.built/" target="_blank" title="Instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+					<a href="https://www.linkedin.com/in/lotfi-tber/" target="_blank" title="LinkedIn" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
 				</div>
 			</div>
 		</section>
 
-		<!-- Footer -->
 		<footer>
 			<div class="container">
-				<div class="footer-email">
-					<a href="mailto:lotfi-tber@outlook.com">lotfi-tber@outlook.com</a>
-				</div>
-				<div class="footer-logo">
-					<h1><span>Lotfi</span> TBER.</h1>
-				</div>
+				<div class="footer-email"><a href="mailto:lotfi-tber@outlook.com">lotfi-tber@outlook.com</a></div>
+				<div class="footer-logo"><h1><span>Lotfi</span> TBER.</h1></div>
 				<div class="footer-social">
 					<div class="social-links">
-						<a href="https://www.instagram.com/slow.built/" target="_blank" title="Instagram">
-							<i class="fab fa-instagram"></i>
-						</a>
-						<a href="https://www.linkedin.com/in/lotfi-tber/" target="_blank" title="LinkedIn">
-							<i class="fab fa-linkedin"></i>
-						</a>
+						<a href="https://www.instagram.com/slow.built/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+						<a href="https://www.linkedin.com/in/lotfi-tber/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
 					</div>
 				</div>
-				<div class="footer-credits">
-					<p>© 2026 All Rights Reserved</p>
-				</div>
+				<div class="footer-credits"><p>© 2026 All Rights Reserved</p></div>
 			</div>
 		</footer>
-
-		<!-- Bouton Retour en Haut -->
-		<button class="back-to-top" id="backToTop-en" aria-label="Back to top">
-			<i class="fas fa-arrow-up"></i>
-		</button>
+		<button class="back-to-top" id="backToTop-en" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
 	</div>
 
 	<script>
-		// Gestion du popup de langue
-		function selectLanguage(lang) {
-			localStorage.setItem('selectedLanguage', lang);
-			document.getElementById('languagePopup').classList.add('hidden');
-			showLanguage(lang);
-		}
+		function selectLanguage(lang) { localStorage.setItem('selectedLanguage', lang); document.getElementById('languagePopup').classList.add('hidden'); showLanguage(lang); }
+		function switchLanguage(lang) { localStorage.setItem('selectedLanguage', lang); showLanguage(lang); window.scrollTo(0, 0); }
+		function showLanguage(lang) { document.querySelectorAll('.lang-section').forEach(section => { section.classList.remove('active'); }); document.getElementById('lang-' + lang).classList.add('active'); document.documentElement.lang = lang; }
+		window.addEventListener('DOMContentLoaded', () => { const savedLanguage = localStorage.getItem('selectedLanguage'); if (savedLanguage) { document.getElementById('languagePopup').classList.add('hidden'); showLanguage(savedLanguage); } });
 
-		function switchLanguage(lang) {
-			localStorage.setItem('selectedLanguage', lang);
-			showLanguage(lang);
-			window.scrollTo(0, 0);
-		}
-
-		function showLanguage(lang) {
-			document.querySelectorAll('.lang-section').forEach(section => {
-				section.classList.remove('active');
-			});
-			document.getElementById('lang-' + lang).classList.add('active');
-			document.documentElement.lang = lang;
-		}
-
-		// Au chargement de la page
-		window.addEventListener('DOMContentLoaded', () => {
-			const savedLanguage = localStorage.getItem('selectedLanguage');
-			if (savedLanguage) {
-				document.getElementById('languagePopup').classList.add('hidden');
-				showLanguage(savedLanguage);
-			}
-		});
-
-		// Menu hamburger pour FR
+		// Menu hamburger FR
 		const hamburgerFr = document.getElementById('hamburger-fr');
 		const navFr = document.getElementById('nav-fr');
-		const navLinksFr = navFr.querySelectorAll('a');
+		hamburgerFr.addEventListener('click', () => { hamburgerFr.classList.toggle('active'); navFr.classList.toggle('active'); });
+		navFr.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => { hamburgerFr.classList.remove('active'); navFr.classList.remove('active'); }); });
 
-		hamburgerFr.addEventListener('click', () => {
-			hamburgerFr.classList.toggle('active');
-			navFr.classList.toggle('active');
-		});
-
-		navLinksFr.forEach(link => {
-			link.addEventListener('click', () => {
-				hamburgerFr.classList.remove('active');
-				navFr.classList.remove('active');
-			});
-		});
-
-		// Menu hamburger pour EN
+		// Menu hamburger EN
 		const hamburgerEn = document.getElementById('hamburger-en');
 		const navEn = document.getElementById('nav-en');
-		const navLinksEn = navEn.querySelectorAll('a');
+		hamburgerEn.addEventListener('click', () => { hamburgerEn.classList.toggle('active'); navEn.classList.toggle('active'); });
+		navEn.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => { hamburgerEn.classList.remove('active'); navEn.classList.remove('active'); }); });
 
-		hamburgerEn.addEventListener('click', () => {
-			hamburgerEn.classList.toggle('active');
-			navEn.classList.toggle('active');
-		});
-
-		navLinksEn.forEach(link => {
-			link.addEventListener('click', () => {
-				hamburgerEn.classList.remove('active');
-				navEn.classList.remove('active');
-			});
-		});
-
-		// Bouton Retour en Haut pour FR
+		// Back to top buttons
 		const backToTopButtonFr = document.getElementById('backToTop-fr');
-
-		window.addEventListener('scroll', () => {
-			if (window.pageYOffset > 300) {
-				backToTopButtonFr.classList.add('visible');
-			} else {
-				backToTopButtonFr.classList.remove('visible');
-			}
-		});
-
-		backToTopButtonFr.addEventListener('click', () => {
-			window.scrollTo({
-				top: 0,
-				behavior: 'smooth'
-			});
-		});
-
-		// Bouton Retour en Haut pour EN
 		const backToTopButtonEn = document.getElementById('backToTop-en');
-
 		window.addEventListener('scroll', () => {
-			if (window.pageYOffset > 300) {
-				backToTopButtonEn.classList.add('visible');
-			} else {
-				backToTopButtonEn.classList.remove('visible');
-			}
+			if (window.pageYOffset > 300) { backToTopButtonFr.classList.add('visible'); backToTopButtonEn.classList.add('visible'); }
+			else { backToTopButtonFr.classList.remove('visible'); backToTopButtonEn.classList.remove('visible'); }
 		});
-
-		backToTopButtonEn.addEventListener('click', () => {
-			window.scrollTo({
-				top: 0,
-				behavior: 'smooth'
-			});
-		});
+		backToTopButtonFr.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+		backToTopButtonEn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
 
 		// Scroll animations
-		const observerOptions = {
-			threshold: 0.1,
-			rootMargin: '0px 0px -100px 0px'
-		};
+		const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -100px 0px' };
+		const observer = new IntersectionObserver(function(entries) { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.style.opacity = '1'; entry.target.style.transform = 'translateY(0)'; } }); }, observerOptions);
+		document.querySelectorAll('.project-card, .page-card, .strategy-card, .workflow-step').forEach(el => { el.style.opacity = '0'; el.style.transform = 'translateY(20px)'; el.style.transition = 'opacity 0.6s ease, transform 0.6s ease'; observer.observe(el); });
 
-		const observer = new IntersectionObserver(function(entries) {
-			entries.forEach(entry => {
-				if (entry.isIntersecting) {
-					entry.target.style.opacity = '1';
-					entry.target.style.transform = 'translateY(0)';
-				}
-			});
-		}, observerOptions);
+		// TESTIMONIALS SLIDER
+		function initTestimonialsSlider(lang) {
+			const track = document.getElementById(`testimonials-track-${lang}`);
+			const dots = document.querySelectorAll(`#dots-${lang} .testimonial-dot`);
+			const prevBtn = document.getElementById(`prev-btn-${lang}`);
+			const nextBtn = document.getElementById(`next-btn-${lang}`);
+			const totalSlides = track.querySelectorAll('.testimonial-card').length;
+			let currentIndex = 0;
+			let autoSlideInterval;
 
-		document.querySelectorAll('.project-card, .page-card, .strategy-card, .workflow-step').forEach(el => {
-			el.style.opacity = '0';
-			el.style.transform = 'translateY(20px)';
-			el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-			observer.observe(el);
-		});
+			function updateSlider() { track.style.transform = `translateX(-${currentIndex * 100}%)`; dots.forEach((dot, index) => { dot.classList.toggle('active', index === currentIndex); }); }
+			function nextSlide() { currentIndex = (currentIndex + 1) % totalSlides; updateSlider(); }
+			function prevSlide() { currentIndex = (currentIndex - 1 + totalSlides) % totalSlides; updateSlider(); }
+			function goToSlide(index) { currentIndex = index; updateSlider(); }
+			function startAutoSlide() { autoSlideInterval = setInterval(nextSlide, 6000); }
+			function stopAutoSlide() { clearInterval(autoSlideInterval); }
+
+			nextBtn.addEventListener('click', () => { stopAutoSlide(); nextSlide(); startAutoSlide(); });
+			prevBtn.addEventListener('click', () => { stopAutoSlide(); prevSlide(); startAutoSlide(); });
+			dots.forEach((dot, index) => { dot.addEventListener('click', () => { stopAutoSlide(); goToSlide(index); startAutoSlide(); }); });
+			track.addEventListener('mouseenter', stopAutoSlide);
+			track.addEventListener('mouseleave', startAutoSlide);
+
+			// Touch support
+			let touchStartX = 0, touchEndX = 0;
+			track.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; stopAutoSlide(); }, { passive: true });
+			track.addEventListener('touchend', (e) => { touchEndX = e.changedTouches[0].screenX; const diff = touchStartX - touchEndX; if (diff > 50) nextSlide(); else if (diff < -50) prevSlide(); startAutoSlide(); }, { passive: true });
+
+			updateSlider();
+			startAutoSlide();
+		}
+
+		initTestimonialsSlider('fr');
+		initTestimonialsSlider('en');
 	</script>
 </body>
 </html>
