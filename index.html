@@ -93,6 +93,47 @@
 		.tool-item:hover { background: rgba(255,153,0,0.15); border-color: #ff9900; transform: translateY(-5px); box-shadow: 0 10px 30px rgba(255,153,0,0.2); }
 		.tool-item i { font-size: 28px; color: #ff9900; }
 		.tool-item span { font-size: 13px; color: #ffffff; font-weight: 600; }
+
+		/* ============================================
+		   CONTENT CREATOR SECTION
+		   ============================================ */
+		.creator-section { background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%); padding: 100px 0; position: relative; overflow: hidden; }
+		.creator-section::before { content: ''; position: absolute; top: 0; right: 0; width: 50%; height: 100%; background: radial-gradient(circle at top right, rgba(255,153,0,0.08) 0%, transparent 60%); pointer-events: none; }
+		.creator-header { text-align: center; margin-bottom: 60px; }
+		.creator-header h2 { font-size: 36px; font-weight: 700; color: #ffffff; font-family: 'Droid Serif', Georgia, serif; margin-bottom: 20px; }
+		.creator-intro { color: #cccccc; font-size: 17px; max-width: 800px; margin: 0 auto; line-height: 1.8; }
+		.creator-intro strong { color: #ff9900; }
+		.creator-content { display: grid; grid-template-columns: 1fr; gap: 50px; }
+		.creator-stats { display: grid; grid-template-columns: 350px 1fr; gap: 40px; align-items: start; }
+		.creator-profile { background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%); border-radius: 20px; padding: 40px 30px; text-align: center; border: 2px solid #333; transition: all 0.4s ease; }
+		.creator-profile:hover { border-color: #ff9900; box-shadow: 0 20px 60px rgba(255,153,0,0.15); }
+		.profile-avatar { width: 100px; height: 100px; background: linear-gradient(135deg, #ff9900 0%, #ffb400 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px; box-shadow: 0 10px 40px rgba(255,153,0,0.3); }
+		.profile-avatar i { font-size: 40px; color: #000000; }
+		.creator-profile h3 { font-size: 24px; font-weight: 700; color: #ffffff; margin-bottom: 10px; }
+		.profile-tagline { color: #ff9900; font-size: 14px; margin-bottom: 8px; font-weight: 600; }
+		.profile-motto { color: #888; font-size: 14px; margin-bottom: 25px; }
+		.profile-stats { display: flex; justify-content: center; gap: 25px; margin-bottom: 30px; padding: 20px 0; border-top: 1px solid #444; border-bottom: 1px solid #444; }
+		.stat-item { text-align: center; }
+		.stat-number { display: block; font-size: 28px; font-weight: 700; color: #ff9900; }
+		.stat-label { font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 1px; }
+		.creator-btn { display: inline-flex; align-items: center; gap: 10px; }
+		.creator-btn i { font-size: 18px; }
+		.creator-highlights h4 { color: #ffffff; font-size: 22px; margin-bottom: 30px; font-weight: 700; }
+		.highlight-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; }
+		.highlight-item { background: rgba(255,255,255,0.03); border-radius: 16px; padding: 30px 25px; border: 1px solid #333; transition: all 0.4s ease; }
+		.highlight-item:hover { background: rgba(255,153,0,0.08); border-color: #ff9900; transform: translateY(-5px); }
+		.highlight-icon { width: 55px; height: 55px; background: linear-gradient(135deg, rgba(255,153,0,0.2) 0%, rgba(255,153,0,0.1) 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+		.highlight-icon i { font-size: 24px; color: #ff9900; }
+		.highlight-item h5 { color: #ffffff; font-size: 17px; font-weight: 700; margin-bottom: 10px; }
+		.highlight-item p { color: #999; font-size: 14px; line-height: 1.6; }
+		.creator-platforms { margin-top: 20px; }
+		.creator-platforms h4 { color: #ffffff; font-size: 20px; margin-bottom: 25px; text-align: center; font-weight: 700; }
+		.platforms-grid { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+		.platform-card { background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%); border: 2px solid #333; border-radius: 16px; padding: 25px 30px; text-align: center; text-decoration: none; transition: all 0.4s ease; min-width: 160px; }
+		.platform-card:hover { border-color: #ff9900; transform: translateY(-8px); box-shadow: 0 15px 40px rgba(255,153,0,0.2); background: linear-gradient(135deg, #333 0%, #2d2d2d 100%); }
+		.platform-card i { font-size: 36px; color: #ff9900; margin-bottom: 15px; display: block; }
+		.platform-name { display: block; color: #ffffff; font-size: 16px; font-weight: 700; margin-bottom: 5px; }
+		.platform-desc { display: block; color: #888; font-size: 12px; }
 		.projects h2 { font-size: 36px; font-weight: 700; margin-bottom: 20px; text-align: center; font-family: 'Droid Serif', Georgia, serif; animation: slideInDown 0.8s ease; }
 		.projects-intro { text-align: center; margin-bottom: 60px; max-width: 800px; margin-left: auto; margin-right: auto; animation: fadeIn 1s ease; }
 		.projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
@@ -228,12 +269,16 @@
 			.hero-content h2 { font-size: 36px; }
 			.about .container { grid-template-columns: 1fr; }
 			.about h2 { font-size: 28px; }
-			.projects h2, .landing-pages h2, .social-media h2, .how-I-work h2, .contact h2, .testimonials h2, .skills-section h2 { font-size: 28px; }
+			.projects h2, .landing-pages h2, .social-media h2, .how-I-work h2, .contact h2, .testimonials h2, .skills-section h2, .creator-header h2 { font-size: 28px; }
 			.projects-grid, .pages-grid, .strategies-grid, .workflow-grid { grid-template-columns: 1fr; }
 			.skills-grid { grid-template-columns: 1fr; }
 			.tool-item { min-width: 80px; padding: 15px 18px; }
 			.tool-item i { font-size: 22px; }
 			.tool-item span { font-size: 11px; }
+			.creator-stats { grid-template-columns: 1fr; }
+			.highlight-grid { grid-template-columns: 1fr; }
+			.platforms-grid { flex-direction: column; align-items: center; }
+			.platform-card { width: 100%; max-width: 300px; }
 			.contact-buttons { flex-direction: column; }
 			.contact-buttons .btn { width: 100%; }
 			.social-links { gap: 15px; }
@@ -253,8 +298,8 @@
 			.container { padding: 0 15px; }
 			.logo h1 { font-size: 18px; }
 			.hero-content h2 { font-size: 28px; }
-			.about h2, .projects h2, .landing-pages h2, .social-media h2, .how-I-work h2, .contact h2, .testimonials h2, .skills-section h2 { font-size: 22px; }
-			.hero, .about, .projects, .landing-pages, .social-media, .how-I-work, .contact, .testimonials, .skills-section { padding: 50px 0; }
+			.about h2, .projects h2, .landing-pages h2, .social-media h2, .how-I-work h2, .contact h2, .testimonials h2, .skills-section h2, .creator-header h2 { font-size: 22px; }
+			.hero, .about, .projects, .landing-pages, .social-media, .how-I-work, .contact, .testimonials, .skills-section, .creator-section { padding: 50px 0; }
 			footer { padding: 30px 0; }
 			.project-card, .page-card, .workflow-step { padding: 20px; }
 			.skill-category { padding: 25px 20px; }
@@ -268,6 +313,19 @@
 			.tool-item { min-width: 70px; padding: 12px 14px; }
 			.tool-item i { font-size: 20px; }
 			.tool-item span { font-size: 10px; }
+			.creator-profile { padding: 30px 20px; }
+			.profile-avatar { width: 80px; height: 80px; }
+			.profile-avatar i { font-size: 32px; }
+			.creator-profile h3 { font-size: 20px; }
+			.profile-stats { gap: 15px; }
+			.stat-number { font-size: 22px; }
+			.highlight-item { padding: 20px; }
+			.highlight-icon { width: 45px; height: 45px; }
+			.highlight-icon i { font-size: 20px; }
+			.highlight-item h5 { font-size: 15px; }
+			.highlight-item p { font-size: 13px; }
+			.platform-card { padding: 20px; }
+			.platform-card i { font-size: 28px; }
 			.step-title { font-size: 16px; }
 			.btn { padding: 10px 20px; font-size: 13px; }
 			nav a { font-size: 16px; }
@@ -427,6 +485,95 @@
 						<div class="tool-item"><i class="fas fa-mail-bulk"></i><span>Mailchimp</span></div>
 						<div class="tool-item"><i class="fab fa-hubspot"></i><span>HubSpot</span></div>
 						<div class="tool-item"><i class="fas fa-file-powerpoint"></i><span>PowerPoint</span></div>
+						<div class="tool-item"><i class="fas fa-paint-brush"></i><span>Photoshop</span></div>
+						<div class="tool-item"><i class="fas fa-palette"></i><span>Canva</span></div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Content Creator Section FR -->
+		<section class="creator-section" id="creator-fr">
+			<div class="container">
+				<div class="creator-header">
+					<h2>Au-delà du Marketing : Créateur de Contenu</h2>
+					<p class="creator-intro">Le marketing digital, c'est aussi comprendre les tendances, créer du contenu engageant et construire une communauté. Je pratique ce que je prêche à travers mon compte Instagram <strong>@slow.built</strong> où je partage mon parcours running, lifestyle et motivation.</p>
+				</div>
+				<div class="creator-content">
+					<div class="creator-stats">
+						<div class="creator-profile">
+							<div class="profile-avatar">
+								<i class="fas fa-running"></i>
+							</div>
+							<h3>@slow.built</h3>
+							<p class="profile-tagline">Marathon finisher | Lifestyle & running tips</p>
+							<p class="profile-motto">🌱 Building habits, slowly but surely</p>
+							<div class="profile-stats">
+								<div class="stat-item">
+									<span class="stat-number">47+</span>
+									<span class="stat-label">Publications</span>
+								</div>
+								<div class="stat-item">
+									<span class="stat-number">1.6K+</span>
+									<span class="stat-label">Followers</span>
+								</div>
+								<div class="stat-item">
+									<span class="stat-number">3</span>
+									<span class="stat-label">Langues</span>
+								</div>
+							</div>
+							<a href="https://www.instagram.com/slow.built/" target="_blank" class="btn creator-btn"><i class="fab fa-instagram"></i> Voir mon Instagram</a>
+						</div>
+						<div class="creator-highlights">
+							<h4>Ce que j'apporte en tant que créateur :</h4>
+							<div class="highlight-grid">
+								<div class="highlight-item">
+									<div class="highlight-icon"><i class="fas fa-video"></i></div>
+									<h5>Formats Tendance</h5>
+									<p>Reels, stories, carrousels — je reste à jour sur les formats qui performent en 2024/2025</p>
+								</div>
+								<div class="highlight-item">
+									<div class="highlight-icon"><i class="fas fa-globe-europe"></i></div>
+									<h5>Contenu Multilingue</h5>
+									<p>Je crée en Français, Anglais et Darija — une vraie compréhension des audiences internationales</p>
+								</div>
+								<div class="highlight-item">
+									<div class="highlight-icon"><i class="fas fa-chart-line"></i></div>
+									<h5>Growth Mindset</h5>
+									<p>De 0 à 1.6K+ followers organiquement — je comprends ce qui fait grandir une audience</p>
+								</div>
+								<div class="highlight-item">
+									<div class="highlight-icon"><i class="fas fa-lightbulb"></i></div>
+									<h5>Veille Tendances</h5>
+									<p>Toujours à l'affût des nouvelles tendances, sons et formats viraux sur les réseaux</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="creator-platforms">
+						<h4>Retrouvez-moi également sur :</h4>
+						<div class="platforms-grid">
+							<a href="https://www.instagram.com/slow.built/" target="_blank" class="platform-card">
+								<i class="fab fa-instagram"></i>
+								<span class="platform-name">Instagram</span>
+								<span class="platform-desc">Mon parcours quotidien</span>
+							</a>
+							<a href="https://www.tiktok.com/@slow.built" target="_blank" class="platform-card">
+								<i class="fab fa-tiktok"></i>
+								<span class="platform-name">TikTok</span>
+								<span class="platform-desc">Lifestyle & running</span>
+							</a>
+							<a href="https://www.strava.com/athletes/slow_built" target="_blank" class="platform-card">
+								<i class="fas fa-running"></i>
+								<span class="platform-name">Strava</span>
+								<span class="platform-desc">Mes runs en temps réel</span>
+							</a>
+							<a href="https://linktr.ee/slow.built" target="_blank" class="platform-card">
+								<i class="fas fa-link"></i>
+								<span class="platform-name">Linktree</span>
+								<span class="platform-desc">Tous mes liens</span>
+							</a>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -795,6 +942,95 @@
 						<div class="tool-item"><i class="fas fa-mail-bulk"></i><span>Mailchimp</span></div>
 						<div class="tool-item"><i class="fab fa-hubspot"></i><span>HubSpot</span></div>
 						<div class="tool-item"><i class="fas fa-file-powerpoint"></i><span>PowerPoint</span></div>
+						<div class="tool-item"><i class="fas fa-paint-brush"></i><span>Photoshop</span></div>
+						<div class="tool-item"><i class="fas fa-palette"></i><span>Canva</span></div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Content Creator Section EN -->
+		<section class="creator-section" id="creator-en">
+			<div class="container">
+				<div class="creator-header">
+					<h2>Beyond Marketing: Content Creator</h2>
+					<p class="creator-intro">Digital marketing is also about understanding trends, creating engaging content, and building community. I practice what I preach through my Instagram account <strong>@slow.built</strong> where I share my running journey, lifestyle, and motivation.</p>
+				</div>
+				<div class="creator-content">
+					<div class="creator-stats">
+						<div class="creator-profile">
+							<div class="profile-avatar">
+								<i class="fas fa-running"></i>
+							</div>
+							<h3>@slow.built</h3>
+							<p class="profile-tagline">Marathon finisher | Lifestyle & running tips</p>
+							<p class="profile-motto">🌱 Building habits, slowly but surely</p>
+							<div class="profile-stats">
+								<div class="stat-item">
+									<span class="stat-number">47+</span>
+									<span class="stat-label">Posts</span>
+								</div>
+								<div class="stat-item">
+									<span class="stat-number">1.6K+</span>
+									<span class="stat-label">Followers</span>
+								</div>
+								<div class="stat-item">
+									<span class="stat-number">3</span>
+									<span class="stat-label">Languages</span>
+								</div>
+							</div>
+							<a href="https://www.instagram.com/slow.built/" target="_blank" class="btn creator-btn"><i class="fab fa-instagram"></i> View my Instagram</a>
+						</div>
+						<div class="creator-highlights">
+							<h4>What I bring as a creator:</h4>
+							<div class="highlight-grid">
+								<div class="highlight-item">
+									<div class="highlight-icon"><i class="fas fa-video"></i></div>
+									<h5>Trending Formats</h5>
+									<p>Reels, stories, carousels — I stay updated on formats that perform in 2024/2025</p>
+								</div>
+								<div class="highlight-item">
+									<div class="highlight-icon"><i class="fas fa-globe-europe"></i></div>
+									<h5>Multilingual Content</h5>
+									<p>I create in French, English and Darija — real understanding of international audiences</p>
+								</div>
+								<div class="highlight-item">
+									<div class="highlight-icon"><i class="fas fa-chart-line"></i></div>
+									<h5>Growth Mindset</h5>
+									<p>From 0 to 1.6K+ followers organically — I understand what grows an audience</p>
+								</div>
+								<div class="highlight-item">
+									<div class="highlight-icon"><i class="fas fa-lightbulb"></i></div>
+									<h5>Trend Monitoring</h5>
+									<p>Always on the lookout for new trends, sounds and viral formats on social media</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="creator-platforms">
+						<h4>Find me also on:</h4>
+						<div class="platforms-grid">
+							<a href="https://www.instagram.com/slow.built/" target="_blank" class="platform-card">
+								<i class="fab fa-instagram"></i>
+								<span class="platform-name">Instagram</span>
+								<span class="platform-desc">My daily journey</span>
+							</a>
+							<a href="https://www.tiktok.com/@slow.built" target="_blank" class="platform-card">
+								<i class="fab fa-tiktok"></i>
+								<span class="platform-name">TikTok</span>
+								<span class="platform-desc">Lifestyle & running</span>
+							</a>
+							<a href="https://www.strava.com/athletes/slow_built" target="_blank" class="platform-card">
+								<i class="fas fa-running"></i>
+								<span class="platform-name">Strava</span>
+								<span class="platform-desc">Track my runs live</span>
+							</a>
+							<a href="https://linktr.ee/slow.built" target="_blank" class="platform-card">
+								<i class="fas fa-link"></i>
+								<span class="platform-name">Linktree</span>
+								<span class="platform-desc">All my links</span>
+							</a>
+						</div>
 					</div>
 				</div>
 			</div>
