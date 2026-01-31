@@ -66,6 +66,33 @@
 
 		/* Projects Section */
 		.projects { background-color: #2d2d2d; color: #ffffff; padding: 80px 0; }
+
+		/* ============================================
+		   SKILLS SECTION
+		   ============================================ */
+		.skills-section { background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); padding: 100px 0; }
+		.skills-section h2 { font-size: 36px; font-weight: 700; text-align: center; margin-bottom: 20px; font-family: 'Droid Serif', Georgia, serif; color: #000000; }
+		.skills-intro { text-align: center; max-width: 700px; margin: 0 auto 60px; color: #555; font-size: 16px; }
+		.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-bottom: 60px; }
+		.skill-category { background: #ffffff; border-radius: 16px; padding: 35px 30px; box-shadow: 0 5px 30px rgba(0,0,0,0.08); transition: all 0.4s ease; border: 2px solid transparent; position: relative; overflow: hidden; }
+		.skill-category::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, #ff9900 0%, #ffb400 100%); transform: scaleX(0); transition: transform 0.4s ease; transform-origin: left; }
+		.skill-category:hover { transform: translateY(-8px); border-color: #ff9900; box-shadow: 0 15px 50px rgba(255,153,0,0.15); }
+		.skill-category:hover::before { transform: scaleX(1); }
+		.skill-icon { width: 70px; height: 70px; background: linear-gradient(135deg, #ff9900 0%, #ffb400 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 25px; box-shadow: 0 8px 25px rgba(255,153,0,0.3); }
+		.skill-icon i { font-size: 28px; color: #000000; }
+		.skill-category h3 { font-size: 20px; font-weight: 700; margin-bottom: 20px; color: #1a1a1a; }
+		.skill-list { list-style: none; }
+		.skill-list li { display: flex; align-items: center; gap: 12px; padding: 10px 0; font-size: 15px; color: #444; border-bottom: 1px solid #f0f0f0; transition: all 0.3s ease; }
+		.skill-list li:last-child { border-bottom: none; }
+		.skill-list li:hover { padding-left: 10px; color: #ff9900; }
+		.skill-list li i { color: #ff9900; font-size: 12px; flex-shrink: 0; }
+		.tools-showcase { background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); border-radius: 20px; padding: 50px 40px; text-align: center; }
+		.tools-showcase h3 { font-size: 24px; font-weight: 700; color: #ffffff; margin-bottom: 40px; }
+		.tools-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+		.tool-item { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,153,0,0.3); border-radius: 12px; padding: 20px 25px; display: flex; flex-direction: column; align-items: center; gap: 10px; min-width: 100px; transition: all 0.4s ease; }
+		.tool-item:hover { background: rgba(255,153,0,0.15); border-color: #ff9900; transform: translateY(-5px); box-shadow: 0 10px 30px rgba(255,153,0,0.2); }
+		.tool-item i { font-size: 28px; color: #ff9900; }
+		.tool-item span { font-size: 13px; color: #ffffff; font-weight: 600; }
 		.projects h2 { font-size: 36px; font-weight: 700; margin-bottom: 20px; text-align: center; font-family: 'Droid Serif', Georgia, serif; animation: slideInDown 0.8s ease; }
 		.projects-intro { text-align: center; margin-bottom: 60px; max-width: 800px; margin-left: auto; margin-right: auto; animation: fadeIn 1s ease; }
 		.projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
@@ -192,7 +219,7 @@
 		@media (max-width: 768px) {
 			.hamburger { display: flex; }
 			nav { position: absolute; top: 70px; left: 0; right: 0; background-color: #000000; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; flex-direction: column; padding: 0; gap: 0; }
-			nav.active { max-height: 400px; padding: 20px; }
+			nav.active { max-height: 500px; padding: 20px; }
 			nav a { display: block; padding: 12px 0; border-bottom: 1px solid #333; }
 			header .container { position: relative; flex-wrap: wrap; }
 			.header-right { order: 2; width: auto; }
@@ -201,8 +228,12 @@
 			.hero-content h2 { font-size: 36px; }
 			.about .container { grid-template-columns: 1fr; }
 			.about h2 { font-size: 28px; }
-			.projects h2, .landing-pages h2, .social-media h2, .how-I-work h2, .contact h2, .testimonials h2 { font-size: 28px; }
+			.projects h2, .landing-pages h2, .social-media h2, .how-I-work h2, .contact h2, .testimonials h2, .skills-section h2 { font-size: 28px; }
 			.projects-grid, .pages-grid, .strategies-grid, .workflow-grid { grid-template-columns: 1fr; }
+			.skills-grid { grid-template-columns: 1fr; }
+			.tool-item { min-width: 80px; padding: 15px 18px; }
+			.tool-item i { font-size: 22px; }
+			.tool-item span { font-size: 11px; }
 			.contact-buttons { flex-direction: column; }
 			.contact-buttons .btn { width: 100%; }
 			.social-links { gap: 15px; }
@@ -222,10 +253,21 @@
 			.container { padding: 0 15px; }
 			.logo h1 { font-size: 18px; }
 			.hero-content h2 { font-size: 28px; }
-			.about h2, .projects h2, .landing-pages h2, .social-media h2, .how-I-work h2, .contact h2, .testimonials h2 { font-size: 22px; }
-			.hero, .about, .projects, .landing-pages, .social-media, .how-I-work, .contact, .testimonials { padding: 50px 0; }
+			.about h2, .projects h2, .landing-pages h2, .social-media h2, .how-I-work h2, .contact h2, .testimonials h2, .skills-section h2 { font-size: 22px; }
+			.hero, .about, .projects, .landing-pages, .social-media, .how-I-work, .contact, .testimonials, .skills-section { padding: 50px 0; }
 			footer { padding: 30px 0; }
 			.project-card, .page-card, .workflow-step { padding: 20px; }
+			.skill-category { padding: 25px 20px; }
+			.skill-icon { width: 60px; height: 60px; }
+			.skill-icon i { font-size: 24px; }
+			.skill-category h3 { font-size: 18px; }
+			.skill-list li { font-size: 14px; padding: 8px 0; }
+			.tools-showcase { padding: 35px 20px; }
+			.tools-showcase h3 { font-size: 20px; }
+			.tools-grid { gap: 12px; }
+			.tool-item { min-width: 70px; padding: 12px 14px; }
+			.tool-item i { font-size: 20px; }
+			.tool-item span { font-size: 10px; }
 			.step-title { font-size: 16px; }
 			.btn { padding: 10px 20px; font-size: 13px; }
 			nav a { font-size: 16px; }
@@ -265,6 +307,7 @@
 				</div>
 				<nav id="nav-fr">
 					<a href="#about-fr">À Propos</a>
+					<a href="#skills-fr">Compétences</a>
 					<a href="#projects-fr">Projets</a>
 					<a href="#landing-fr">Landing Pages</a>
 					<a href="#social-fr">Réseaux Sociaux</a>
@@ -293,6 +336,99 @@
 					<p>J'aime opérer à l'intersection du <strong>contenu, de la performance et des opérations</strong> : aligner les parties prenantes, transformer des sujets techniques en narratifs clairs, et améliorer en continu ce qui génère de l'impact.</p>
 				</div>
 				<div><img src="https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/8yjztmdl/276/p01/krc/pdpvf.png" alt="Portrait de Lotfi" /></div>
+			</div>
+		</section>
+
+		<!-- Skills Section FR -->
+		<section class="skills-section" id="skills-fr">
+			<div class="container">
+				<h2>Mes Compétences & Expertise</h2>
+				<p class="skills-intro">Un ensemble complet de compétences en marketing digital, de la stratégie à l'exécution, couvrant l'acquisition, le contenu, l'analyse et l'automatisation.</p>
+				<div class="skills-grid">
+					<div class="skill-category">
+						<div class="skill-icon"><i class="fas fa-search"></i></div>
+						<h3>SEO & Optimisation Web</h3>
+						<ul class="skill-list">
+							<li><i class="fas fa-check"></i> Audits SEO techniques & on-page</li>
+							<li><i class="fas fa-check"></i> Recherche de mots-clés (SEMrush, Ahrefs)</li>
+							<li><i class="fas fa-check"></i> Google Search Console & Analytics</li>
+							<li><i class="fas fa-check"></i> Optimisation UX & Core Web Vitals</li>
+							<li><i class="fas fa-check"></i> Stratégie de contenu SEO</li>
+						</ul>
+					</div>
+					<div class="skill-category">
+						<div class="skill-icon"><i class="fas fa-bullseye"></i></div>
+						<h3>Acquisition Payante (Paid Media)</h3>
+						<ul class="skill-list">
+							<li><i class="fas fa-check"></i> Google Ads (Search, Display, Shopping)</li>
+							<li><i class="fas fa-check"></i> Meta Ads (Facebook & Instagram)</li>
+							<li><i class="fas fa-check"></i> Gestion de budgets & ROAS</li>
+							<li><i class="fas fa-check"></i> A/B Testing créatifs & audiences</li>
+							<li><i class="fas fa-check"></i> Tracking UTM & Attribution</li>
+						</ul>
+					</div>
+					<div class="skill-category">
+						<div class="skill-icon"><i class="fas fa-share-alt"></i></div>
+						<h3>Social Media & Contenu</h3>
+						<ul class="skill-list">
+							<li><i class="fas fa-check"></i> Stratégie éditoriale multi-plateforme</li>
+							<li><i class="fas fa-check"></i> Création de briefs social media</li>
+							<li><i class="fas fa-check"></i> Community management</li>
+							<li><i class="fas fa-check"></i> Activations créateurs & influenceurs</li>
+							<li><i class="fas fa-check"></i> Calendrier éditorial & piliers de contenu</li>
+						</ul>
+					</div>
+					<div class="skill-category">
+						<div class="skill-icon"><i class="fas fa-envelope-open-text"></i></div>
+						<h3>Email Marketing & CRM</h3>
+						<ul class="skill-list">
+							<li><i class="fas fa-check"></i> Création de newsletters</li>
+							<li><i class="fas fa-check"></i> Campagnes emailing (Mailchimp, HubSpot)</li>
+							<li><i class="fas fa-check"></i> Segmentation & personnalisation</li>
+							<li><i class="fas fa-check"></i> Automatisation email & workflows</li>
+							<li><i class="fas fa-check"></i> Analyse taux d'ouverture & CTR</li>
+						</ul>
+					</div>
+					<div class="skill-category">
+						<div class="skill-icon"><i class="fas fa-chart-line"></i></div>
+						<h3>Analytics & Reporting</h3>
+						<ul class="skill-list">
+							<li><i class="fas fa-check"></i> Google Analytics 4 (GA4)</li>
+							<li><i class="fas fa-check"></i> Looker Studio (Data Studio)</li>
+							<li><i class="fas fa-check"></i> Dashboards & KPIs</li>
+							<li><i class="fas fa-check"></i> Reporting automatisé (Python)</li>
+							<li><i class="fas fa-check"></i> Data storytelling & insights</li>
+						</ul>
+					</div>
+					<div class="skill-category">
+						<div class="skill-icon"><i class="fas fa-laptop-code"></i></div>
+						<h3>Outils & Technologies</h3>
+						<ul class="skill-list">
+							<li><i class="fas fa-check"></i> CMS (WordPress, Drupal)</li>
+							<li><i class="fas fa-check"></i> HTML, CSS, bases JavaScript</li>
+							<li><i class="fas fa-check"></i> Python (automatisation reporting)</li>
+							<li><i class="fas fa-check"></i> Figma, Adobe XD, Canva</li>
+							<li><i class="fas fa-check"></i> Trello, Notion, Asana</li>
+						</ul>
+					</div>
+				</div>
+				<div class="tools-showcase">
+					<h3>Outils que j'utilise au quotidien</h3>
+					<div class="tools-grid">
+						<div class="tool-item"><i class="fab fa-google"></i><span>Google Ads</span></div>
+						<div class="tool-item"><i class="fab fa-facebook"></i><span>Meta Ads</span></div>
+						<div class="tool-item"><i class="fas fa-chart-bar"></i><span>GA4</span></div>
+						<div class="tool-item"><i class="fas fa-chart-pie"></i><span>Looker Studio</span></div>
+						<div class="tool-item"><i class="fas fa-search-dollar"></i><span>SEMrush</span></div>
+						<div class="tool-item"><i class="fab fa-python"></i><span>Python</span></div>
+						<div class="tool-item"><i class="fab fa-wordpress"></i><span>WordPress</span></div>
+						<div class="tool-item"><i class="fab fa-figma"></i><span>Figma</span></div>
+						<div class="tool-item"><i class="fab fa-trello"></i><span>Trello</span></div>
+						<div class="tool-item"><i class="fas fa-mail-bulk"></i><span>Mailchimp</span></div>
+						<div class="tool-item"><i class="fab fa-hubspot"></i><span>HubSpot</span></div>
+						<div class="tool-item"><i class="fas fa-file-powerpoint"></i><span>PowerPoint</span></div>
+					</div>
+				</div>
 			</div>
 		</section>
 
@@ -404,7 +540,7 @@
 									<div class="testimonial-info">
 										<h4>Zineb Taleb</h4>
 										<p>Digital Marketing Enthusiast</p>
-										<span>Manager direct(e) • 2022–2023</span>
+										<span>Manager direct(e) • Mai 2023</span>
 									</div>
 								</div>
 							</div>
@@ -418,7 +554,7 @@
 									<div class="testimonial-info">
 										<h4>Julie Kumec</h4>
 										<p>Créatrice de contenu UGC | Responsable Social Media</p>
-										<span>Manager direct(e) • 2021–2022</span>
+										<span>Manager direct(e) • Mai 2023</span>
 									</div>
 								</div>
 							</div>
@@ -432,7 +568,7 @@
 									<div class="testimonial-info">
 										<h4>Zoubida Drissi Kaïtouni</h4>
 										<p>Marketing & Communication Coordinator</p>
-										<span>Fonction supérieure • 2020</span>
+										<span>Fonction supérieure • Octobre 2020</span>
 									</div>
 								</div>
 							</div>
@@ -446,7 +582,7 @@
 									<div class="testimonial-info">
 										<h4>Shehrazed Dada</h4>
 										<p>Marketing & Digital Specialist - Ph.D. Management Sc</p>
-										<span>Manager direct(e) • 2020</span>
+										<span>Manager direct(e) • Juin 2020</span>
 									</div>
 								</div>
 							</div>
@@ -460,7 +596,7 @@
 									<div class="testimonial-info">
 										<h4>Badr Mohamed Ben Laswad</h4>
 										<p>Managing Partner @Yealead | ERP / CRM Consultant</p>
-										<span>Collègue chez le Cenacle • 2020</span>
+										<span>Même école • Juin 2020</span>
 									</div>
 								</div>
 							</div>
@@ -501,7 +637,7 @@
 				<h2>Prenons Contact</h2>
 				<p class="contact-intro">Envie de discuter d'un poste, d'un projet ou d'une collaboration ? Je suis heureux d'échanger, n'hésitez pas à me contacter par email, téléphone ou LinkedIn.</p>
 				<div class="contact-buttons">
-					<a href="https://github.com/lotfiltb/portfolio-page/raw/main/Curriculum_vitae_Lotfi_TBER_2026_Growth.pdf" class="btn" download>Télécharger mon CV</a>
+					<a href="https://github.com/lotfiltb/portfolio-page/raw/main/Curriculum_vitae_Lotfi_TBER_2026_Res.pdf" class="btn" download>Télécharger mon CV</a>
 					<a href="tel:+33613134713" class="btn">M'appeler</a>
 					<a href="mailto:lotfi-tber@outlook.com?subject=Prenons%20contact" class="btn">M'envoyer un email</a>
 				</div>
@@ -539,6 +675,7 @@
 				</div>
 				<nav id="nav-en">
 					<a href="#about-en">About Me</a>
+					<a href="#skills-en">Skills</a>
 					<a href="#projects-en">Projects</a>
 					<a href="#landing-en">Landing Pages</a>
 					<a href="#social-en">Social Media</a>
@@ -567,6 +704,99 @@
 					<p>I enjoy operating at the intersection of <strong>content, performance and operations</strong>: aligning stakeholders, turning technical topics into clear narratives, and continuously improving what drives impact.</p>
 				</div>
 				<div><img src="https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/8yjztmdl/276/p01/krc/pdpvf.png" alt="Lotfi Portrait" /></div>
+			</div>
+		</section>
+
+		<!-- Skills Section EN -->
+		<section class="skills-section" id="skills-en">
+			<div class="container">
+				<h2>My Skills & Expertise</h2>
+				<p class="skills-intro">A comprehensive digital marketing skill set, from strategy to execution, covering acquisition, content, analytics, and automation.</p>
+				<div class="skills-grid">
+					<div class="skill-category">
+						<div class="skill-icon"><i class="fas fa-search"></i></div>
+						<h3>SEO & Web Optimization</h3>
+						<ul class="skill-list">
+							<li><i class="fas fa-check"></i> Technical & on-page SEO audits</li>
+							<li><i class="fas fa-check"></i> Keyword research (SEMrush, Ahrefs)</li>
+							<li><i class="fas fa-check"></i> Google Search Console & Analytics</li>
+							<li><i class="fas fa-check"></i> UX optimization & Core Web Vitals</li>
+							<li><i class="fas fa-check"></i> SEO content strategy</li>
+						</ul>
+					</div>
+					<div class="skill-category">
+						<div class="skill-icon"><i class="fas fa-bullseye"></i></div>
+						<h3>Paid Acquisition (Paid Media)</h3>
+						<ul class="skill-list">
+							<li><i class="fas fa-check"></i> Google Ads (Search, Display, Shopping)</li>
+							<li><i class="fas fa-check"></i> Meta Ads (Facebook & Instagram)</li>
+							<li><i class="fas fa-check"></i> Budget management & ROAS</li>
+							<li><i class="fas fa-check"></i> A/B Testing creatives & audiences</li>
+							<li><i class="fas fa-check"></i> UTM tracking & Attribution</li>
+						</ul>
+					</div>
+					<div class="skill-category">
+						<div class="skill-icon"><i class="fas fa-share-alt"></i></div>
+						<h3>Social Media & Content</h3>
+						<ul class="skill-list">
+							<li><i class="fas fa-check"></i> Multi-platform editorial strategy</li>
+							<li><i class="fas fa-check"></i> Social media brief creation</li>
+							<li><i class="fas fa-check"></i> Community management</li>
+							<li><i class="fas fa-check"></i> Creator & influencer activations</li>
+							<li><i class="fas fa-check"></i> Editorial calendar & content pillars</li>
+						</ul>
+					</div>
+					<div class="skill-category">
+						<div class="skill-icon"><i class="fas fa-envelope-open-text"></i></div>
+						<h3>Email Marketing & CRM</h3>
+						<ul class="skill-list">
+							<li><i class="fas fa-check"></i> Newsletter creation</li>
+							<li><i class="fas fa-check"></i> Email campaigns (Mailchimp, HubSpot)</li>
+							<li><i class="fas fa-check"></i> Segmentation & personalization</li>
+							<li><i class="fas fa-check"></i> Email automation & workflows</li>
+							<li><i class="fas fa-check"></i> Open rate & CTR analysis</li>
+						</ul>
+					</div>
+					<div class="skill-category">
+						<div class="skill-icon"><i class="fas fa-chart-line"></i></div>
+						<h3>Analytics & Reporting</h3>
+						<ul class="skill-list">
+							<li><i class="fas fa-check"></i> Google Analytics 4 (GA4)</li>
+							<li><i class="fas fa-check"></i> Looker Studio (Data Studio)</li>
+							<li><i class="fas fa-check"></i> Dashboards & KPIs</li>
+							<li><i class="fas fa-check"></i> Automated reporting (Python)</li>
+							<li><i class="fas fa-check"></i> Data storytelling & insights</li>
+						</ul>
+					</div>
+					<div class="skill-category">
+						<div class="skill-icon"><i class="fas fa-laptop-code"></i></div>
+						<h3>Tools & Technologies</h3>
+						<ul class="skill-list">
+							<li><i class="fas fa-check"></i> CMS (WordPress, Drupal)</li>
+							<li><i class="fas fa-check"></i> HTML, CSS, JavaScript basics</li>
+							<li><i class="fas fa-check"></i> Python (reporting automation)</li>
+							<li><i class="fas fa-check"></i> Figma, Adobe XD, Canva</li>
+							<li><i class="fas fa-check"></i> Trello, Notion, Asana</li>
+						</ul>
+					</div>
+				</div>
+				<div class="tools-showcase">
+					<h3>Tools I use daily</h3>
+					<div class="tools-grid">
+						<div class="tool-item"><i class="fab fa-google"></i><span>Google Ads</span></div>
+						<div class="tool-item"><i class="fab fa-facebook"></i><span>Meta Ads</span></div>
+						<div class="tool-item"><i class="fas fa-chart-bar"></i><span>GA4</span></div>
+						<div class="tool-item"><i class="fas fa-chart-pie"></i><span>Looker Studio</span></div>
+						<div class="tool-item"><i class="fas fa-search-dollar"></i><span>SEMrush</span></div>
+						<div class="tool-item"><i class="fab fa-python"></i><span>Python</span></div>
+						<div class="tool-item"><i class="fab fa-wordpress"></i><span>WordPress</span></div>
+						<div class="tool-item"><i class="fab fa-figma"></i><span>Figma</span></div>
+						<div class="tool-item"><i class="fab fa-trello"></i><span>Trello</span></div>
+						<div class="tool-item"><i class="fas fa-mail-bulk"></i><span>Mailchimp</span></div>
+						<div class="tool-item"><i class="fab fa-hubspot"></i><span>HubSpot</span></div>
+						<div class="tool-item"><i class="fas fa-file-powerpoint"></i><span>PowerPoint</span></div>
+					</div>
+				</div>
 			</div>
 		</section>
 
@@ -678,7 +908,7 @@
 									<div class="testimonial-info">
 										<h4>Zineb Taleb</h4>
 										<p>Digital Marketing Enthusiast</p>
-										<span>Direct Manager • 2022–2023</span>
+										<span>Direct Manager • May 2023</span>
 									</div>
 								</div>
 							</div>
@@ -692,7 +922,7 @@
 									<div class="testimonial-info">
 										<h4>Julie Kumec</h4>
 										<p>UGC Content Creator | Social Media Manager</p>
-										<span>Direct Manager • 2021–2022</span>
+										<span>Direct Manager • May 2023</span>
 									</div>
 								</div>
 							</div>
@@ -706,7 +936,7 @@
 									<div class="testimonial-info">
 										<h4>Zoubida Drissi Kaïtouni</h4>
 										<p>Marketing & Communication Coordinator</p>
-										<span>Senior Position • 2020</span>
+										<span>Senior Position • October 2020</span>
 									</div>
 								</div>
 							</div>
@@ -720,7 +950,7 @@
 									<div class="testimonial-info">
 										<h4>Shehrazed Dada</h4>
 										<p>Marketing & Digital Specialist - Ph.D. Management Sc</p>
-										<span>Direct Manager • 2020</span>
+										<span>Direct Manager • June 2020</span>
 									</div>
 								</div>
 							</div>
@@ -734,7 +964,7 @@
 									<div class="testimonial-info">
 										<h4>Badr Mohamed Ben Laswad</h4>
 										<p>Managing Partner @Yealead | ERP / CRM Consultant</p>
-										<span>Colleague at Le Cenacle • June 2020</span>
+										<span>Same school • June 2020</span>
 									</div>
 								</div>
 							</div>
@@ -775,7 +1005,7 @@
 				<h2>Get In Touch</h2>
 				<p class="contact-intro">Want to discuss a role, a project, or a collaboration? I'm happy to connect, feel free to reach out via email, phone, or LinkedIn.</p>
 				<div class="contact-buttons">
-					<a href="https://github.com/lotfiltb/portfolio-page/raw/main/Curriculum_vitae_fr_Lotfi_TBER_2026_FIN.pdf" class="btn" download>Download My Resume</a>
+					<a href="https://github.com/lotfiltb/portfolio-page/raw/main/Curriculum_vitae_fr_Lotfi_TBER_2026_FV.pdf" class="btn" download>Download My Resume</a>
 					<a href="tel:+33613134713" class="btn">Call Me</a>
 					<a href="mailto:lotfi-tber@outlook.com?subject=Let's%20connect" class="btn">Email Me</a>
 				</div>
